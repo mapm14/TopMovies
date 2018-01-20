@@ -1,0 +1,44 @@
+p movies.manuelperera.com.topmovies.injections.module.client 0
+d 0/ApiModule
+a dagger.Module 0
+c 0 0/ApiModule
+a dagger.Provides 1
+m 1 0/ApiModule okHttpClient
+a javax.inject.Singleton 2
+m 2 0/ApiModule okHttpClient
+a org.jetbrains.annotations.NotNull 3
+m 3 0/ApiModule okHttpClient
+d 0/TransactionModule
+c 0 0/TransactionModule
+p movies.manuelperera.com.topmovies.injections.module 1
+d 1/AppModule
+c 0 1/AppModule
+m 1 1/AppModule context
+m 2 1/AppModule context
+m 3 1/AppModule context
+p movies.manuelperera.com.topmovies 2
+d 2/TopMoviesApp
+d 2/TopMoviesApp$Companion
+f 3 2/TopMoviesApp mDaggerAppComponent
+m 3 2/TopMoviesApp$Companion getMDaggerAppComponent
+m 3 2/TopMoviesApp$Companion daggerAppComponent
+p movies.manuelperera.com.topmovies.injections.module.domain.repository 3
+d 3/ApiRepositoryModule
+c 0 3/ApiRepositoryModule
+d 3/CacheRepositoryModule
+c 0 3/CacheRepositoryModule
+p movies.manuelperera.com.topmovies.injections.module.domain.service 4
+d 4/BusinessServiceModule
+c 0 4/BusinessServiceModule
+p movies.manuelperera.com.topmovies.injections.module.domain.model 5
+d 5/ModelModule
+c 0 5/ModelModule
+p movies.manuelperera.com.topmovies.injections 6
+d 6/AppComponent
+c 2 6/AppComponent
+a dagger.Component 4
+c 4 6/AppComponent
+m 3 6/AppComponent provideContext
+d 6/AppComponent$DefaultImpls
+p movies.manuelperera.com.topmovies.screen 7
+d 7/MainActivity
