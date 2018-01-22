@@ -1,4 +1,4 @@
-#Sat Jan 20 14:56:43 CET 2018
-base.0=/Users/manuelperera/Documents/Android/TopMovies/app/build/intermediates/transforms/dexMerger/debug/3
+#Mon Jan 22 01:24:32 CET 2018
+base.0=/Users/manuelperera/Documents/Android/TopMovies/app/build/intermediates/transforms/dexMerger/debug/22
 path.0=classes.dex
 renamed.0=classes.dex

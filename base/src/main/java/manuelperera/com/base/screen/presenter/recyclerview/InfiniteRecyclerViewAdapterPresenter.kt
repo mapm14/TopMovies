@@ -58,7 +58,7 @@ abstract class InfiniteRecyclerViewAdapterPresenter<V : InfiniteRecyclerViewAdap
     private fun getLastItemType(): RecyclerViewAdapterItem.Type =
             listData[listData.size - 1].getType()
 
-    fun calculateRecyclerViewDiffDiffResult(newData: List<T>?): DiffUtil.DiffResult {
+    override fun calculateRecyclerViewDiffResult(newData: List<T>?): DiffUtil.DiffResult {
         val oldList = LinkedList<T>(listData)
 
         if (listData.isNotEmpty()) {

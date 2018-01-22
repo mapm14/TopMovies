@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundApp"
+    android:orientation="vertical"
+    tools:context="movies.manuelperera.com.topmovies.screen.moviedetail.MovieDetailActivity">
+
+    <ImageView
+        android:id="@+id/movieImageView"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp" />
+
+    <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+        android:id="@+id/movieDetailTitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        tools:text="The Avengers" />
+
+</LinearLayout>

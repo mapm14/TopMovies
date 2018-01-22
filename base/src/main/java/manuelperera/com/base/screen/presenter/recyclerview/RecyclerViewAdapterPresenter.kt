@@ -17,8 +17,8 @@ import java.util.*
 abstract class RecyclerViewAdapterPresenter<V : RecyclerViewAdapterPresenterView, T : RecyclerViewAdapterItem> : AdapterPresenter<V>() {
 
     var listData: MutableList<T> = mutableListOf()
-    private var mLoadingList: List<T> = listOf()
-    private var mNetworkErrorList: List<T> = listOf()
+    private var mLoadingList: MutableList<T> = mutableListOf()
+    private var mNetworkErrorList: MutableList<T> = mutableListOf()
 
     override fun init() {
         initLists()
@@ -39,7 +39,7 @@ abstract class RecyclerViewAdapterPresenter<V : RecyclerViewAdapterPresenterView
 
     fun bindReloadDataObservable(reloadObservable: Observable<Any>) {
         addSubscription(reloadObservable
-                .flatMap<Transaction<List<T>>> { loadLoadingData() }
+                .flatMap<Transaction<MutableList<T>>> { loadLoadingData() }
                 .flatMap<DiffUtil.DiffResult>(calculateRecyclerViewDiffs())
                 .doOnNext(showResults())
                 .flatMap<DiffUtil.DiffResult> { load() }
@@ -48,7 +48,7 @@ abstract class RecyclerViewAdapterPresenter<V : RecyclerViewAdapterPresenterView
 
     fun bindClearDataObservable(clearObservable: Observable<Any>) {
         addSubscription(clearObservable
-                .flatMap<Transaction<List<T>>> { loadEmptyData() }
+                .flatMap<Transaction<MutableList<T>>> { loadEmptyData() }
                 .flatMap<DiffUtil.DiffResult>(calculateRecyclerViewDiffs())
                 .subscribe(showResults()))
     }
@@ -61,12 +61,12 @@ abstract class RecyclerViewAdapterPresenter<V : RecyclerViewAdapterPresenterView
             Consumer { diffResult -> getDiffResultBinder(diffResult) }
 
     fun hasLoadingView(): Boolean =
-            mLoadingList.isNotEmpty() && mLoadingList.isNotEmpty()
+            mLoadingList.isNotEmpty()
 
-    protected fun loadLoadingData(): Observable<Transaction<List<T>>> =
+    protected fun loadLoadingData(): Observable<Transaction<MutableList<T>>> =
             Observable.just(Transaction(mLoadingList, TransactionStatus.SUCCESS))
 
-    protected fun calculateRecyclerViewDiffs(): Function<Transaction<List<T>>, Observable<DiffUtil.DiffResult>> =
+    protected fun calculateRecyclerViewDiffs(): Function<Transaction<MutableList<T>>, Observable<DiffUtil.DiffResult>> =
             Function { transaction ->
                 Observable.create<DiffUtil.DiffResult> { observer ->
                     observer.onNext(calculateRecyclerViewDiffResult(if (transaction.isSuccess()) transaction.data else mNetworkErrorList))
@@ -78,19 +78,19 @@ abstract class RecyclerViewAdapterPresenter<V : RecyclerViewAdapterPresenterView
         addSubscription(load().subscribe(showResults()))
     }
 
-    private fun loadObservableData(): Observable<Transaction<List<T>>> =
-            getLoadObservable().map<Transaction<List<T>>>(addAdapterItemTypeToElements())
+    private fun loadObservableData(): Observable<Transaction<MutableList<T>>> =
+            getLoadObservable().map<Transaction<MutableList<T>>>(addAdapterItemTypeToElements())
 
-    private fun addAdapterItemTypeToElements(): Function<Transaction<List<T>>, Transaction<List<T>>> =
+    private fun addAdapterItemTypeToElements(): Function<Transaction<MutableList<T>>, Transaction<MutableList<T>>> =
             Function { transaction ->
-                val newTransaction: Transaction<List<T>>
+                val newTransaction: Transaction<MutableList<T>>
 
                 if (transaction.isSuccess() && transaction.data != null) {
                     val list = ArrayList<T>()
 
                     transaction.data?.let { data ->
                         for (element in data) {
-                            if (element.getType() !== RecyclerViewAdapterItem.Type.HEADER && element.getType() !== RecyclerViewAdapterItem.Type.ITEM)
+                            if (element.getType() != RecyclerViewAdapterItem.Type.HEADER && element.getType() != RecyclerViewAdapterItem.Type.ITEM && element.getType() != RecyclerViewAdapterItem.Type.EMPTY)
                                 element.setType(RecyclerViewAdapterItem.Type.ITEM)
 
                             list.add(element)
@@ -116,14 +116,14 @@ abstract class RecyclerViewAdapterPresenter<V : RecyclerViewAdapterPresenterView
         mNetworkErrorList = getNetworkErrorList()
     }
 
-    private fun loadEmptyData(): Observable<Transaction<List<T>>> =
-            Observable.just(Transaction(emptyList(), TransactionStatus.SUCCESS))
+    private fun loadEmptyData(): Observable<Transaction<MutableList<T>>> =
+            Observable.just(Transaction(mutableListOf(), TransactionStatus.SUCCESS))
 
-    abstract fun getLoadingList(): List<T>
+    abstract fun getLoadingList(): MutableList<T>
 
-    abstract fun getNetworkErrorList(): List<T>
+    abstract fun getNetworkErrorList(): MutableList<T>
 
-    abstract fun getLoadObservable(): Observable<Transaction<List<T>>>
+    abstract fun getLoadObservable(): Observable<Transaction<MutableList<T>>>
 
     abstract fun getItemClickCompletable(viewClicked: View, data: T): Completable
 

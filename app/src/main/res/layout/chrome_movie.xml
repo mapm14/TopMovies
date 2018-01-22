@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movieChromeContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundMovieChrome"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/movieImageView"
+        android:layout_width="match_parent"
+        android:layout_height="185dp"
+        android:background="@color/backgroundApp"
+        android:src="@mipmap/ic_launcher" />
+
+    <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+        android:id="@+id/movieChromeVoteAverageTextView"
+        android:layout_width="35dp"
+        android:layout_height="18dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="11sp"
+        app:fontName="Open_Sans_Regular"
+        tools:ignore="SmallSp" />
+
+    <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+        android:id="@+id/movieChromeTitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:ellipsize="end"
+        android:paddingEnd="10dp"
+        android:paddingStart="7dp"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        app:fontName="Open_Sans_Regular"
+        app:letterSpacing="-0.02"
+        tools:text="The Avengers" />
+
+</LinearLayout>

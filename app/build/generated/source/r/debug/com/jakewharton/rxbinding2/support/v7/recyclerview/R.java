@@ -8,10 +8,10 @@ package com.jakewharton.rxbinding2.support.v7.recyclerview;
 
 public final class R {
     public static final class attr {
-        public static final int layoutManager = 0x7f0300bf;
-        public static final int reverseLayout = 0x7f030125;
-        public static final int spanCount = 0x7f030134;
-        public static final int stackFromEnd = 0x7f03013a;
+        public static final int layoutManager = 0x7f0300c0;
+        public static final int reverseLayout = 0x7f030127;
+        public static final int spanCount = 0x7f030136;
+        public static final int stackFromEnd = 0x7f03013c;
     }
     public static final class dimen {
         public static final int item_touch_helper_max_drag_scroll_per_frame = 0x7f060084;
@@ -19,10 +19,10 @@ public final class R {
         public static final int item_touch_helper_swipe_escape_velocity = 0x7f060086;
     }
     public static final class id {
-        public static final int item_touch_helper_previous_elevation = 0x7f080052;
+        public static final int item_touch_helper_previous_elevation = 0x7f080055;
     }
     public static final class styleable {
-        public static final int[] RecyclerView = { 0x010100c4, 0x010100f1, 0x7f030095, 0x7f030096, 0x7f030097, 0x7f030098, 0x7f030099, 0x7f0300bf, 0x7f030125, 0x7f030134, 0x7f03013a };
+        public static final int[] RecyclerView = { 0x010100c4, 0x010100f1, 0x7f030095, 0x7f030096, 0x7f030097, 0x7f030098, 0x7f030099, 0x7f0300c0, 0x7f030127, 0x7f030136, 0x7f03013c };
         public static final int RecyclerView_android_orientation = 0;
         public static final int RecyclerView_android_descendantFocusability = 1;
         public static final int RecyclerView_fastScrollEnabled = 2;

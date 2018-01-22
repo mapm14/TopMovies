@@ -8,37 +8,266 @@ a javax.inject.Singleton 2
 m 2 0/ApiModule okHttpClient
 a org.jetbrains.annotations.NotNull 3
 m 3 0/ApiModule okHttpClient
+d 0/ApiModule$okHttpClient$2
+m 1 0/ApiModule movieApiClient
+m 3 0/ApiModule movieApiClient
 d 0/TransactionModule
 c 0 0/TransactionModule
-p movies.manuelperera.com.topmovies.injections.module 1
-d 1/AppModule
-c 0 1/AppModule
-m 1 1/AppModule context
-m 2 1/AppModule context
-m 3 1/AppModule context
-p movies.manuelperera.com.topmovies 2
-d 2/TopMoviesApp
-d 2/TopMoviesApp$Companion
-f 3 2/TopMoviesApp mDaggerAppComponent
-m 3 2/TopMoviesApp$Companion getMDaggerAppComponent
-m 3 2/TopMoviesApp$Companion daggerAppComponent
-p movies.manuelperera.com.topmovies.injections.module.domain.repository 3
-d 3/ApiRepositoryModule
-c 0 3/ApiRepositoryModule
-d 3/CacheRepositoryModule
-c 0 3/CacheRepositoryModule
-p movies.manuelperera.com.topmovies.injections.module.domain.service 4
-d 4/BusinessServiceModule
-c 0 4/BusinessServiceModule
-p movies.manuelperera.com.topmovies.injections.module.domain.model 5
-d 5/ModelModule
-c 0 5/ModelModule
-p movies.manuelperera.com.topmovies.injections 6
-d 6/AppComponent
-c 2 6/AppComponent
-a dagger.Component 4
-c 4 6/AppComponent
-m 3 6/AppComponent provideContext
-d 6/AppComponent$DefaultImpls
-p movies.manuelperera.com.topmovies.screen 7
-d 7/MainActivity
+m 1 0/TransactionModule topRatedMoviesApiResponseTransactionRequestFactory
+m 3 0/TransactionModule topRatedMoviesApiResponseTransactionRequestFactory
+p movies.manuelperera.com.topmovies.injections.module.usecase 1
+d 1/MoviesUseCaseModule
+c 0 1/MoviesUseCaseModule
+m 1 1/MoviesUseCaseModule getTopRatedMoviesUseCase
+m 3 1/MoviesUseCaseModule getTopRatedMoviesUseCase
+m 1 1/MoviesUseCaseModule setMovieIdUseCase
+m 3 1/MoviesUseCaseModule setMovieIdUseCase
+m 1 1/MoviesUseCaseModule setTopRatedMoviesPaginationUseCase
+m 3 1/MoviesUseCaseModule setTopRatedMoviesPaginationUseCase
+p movies.manuelperera.com.topmovies.domain.model 2
+d 2/MovieModel
+m 3 2/MovieModel getTopRatedMovies
+p movies.manuelperera.com.topmovies 3
+d 3/TopMoviesApp
+d 3/TopMoviesApp$Companion
+f 3 3/TopMoviesApp mDaggerAppComponent
+m 3 3/TopMoviesApp$Companion getMDaggerAppComponent
+m 3 3/TopMoviesApp$Companion daggerAppComponent
+p movies.manuelperera.com.topmovies.injections.module.domain.repository 4
+d 4/ApiRepositoryModule
+c 0 4/ApiRepositoryModule
+m 1 4/ApiRepositoryModule movieApiRepository
+m 3 4/ApiRepositoryModule movieApiRepository
+d 4/CacheRepositoryModule
+c 0 4/CacheRepositoryModule
+p movies.manuelperera.com.topmovies.screen.toprated 5
+d 5/TopRatedMoviesActivity
+d 5/TopRatedMoviesActivity$configRecycler$2
+d 5/TopRatedMoviesView
+d 5/TopRatedMoviesView$DefaultImpls
+p movies.manuelperera.com.topmovies.client.transaction 6
+d 6/TransactionRequestFactoryImpl
+m 3 6/TransactionRequestFactoryImpl createTransactionRequest
+d 6/TransactionRequestImpl
+m 3 6/TransactionRequestImpl modifyObservable
+d 6/TransactionRequestImpl$modifyObservable$1
+m 3 6/TransactionRequestImpl$modifyObservable$1 apply
+d 6/TransactionRequestImpl$modifyObservable$1$1
+d 6/TransactionRequestImpl$modifyObservable$2
+m 3 6/TransactionRequestImpl modifyObservableList
+d 6/TransactionRequestImpl$modifyObservableList$1
+m 3 6/TransactionRequestImpl$modifyObservableList$1 apply
+d 6/TransactionRequestImpl$modifyObservableList$1$1
+d 6/TransactionRequestImpl$modifyObservableList$2
+a org.jetbrains.annotations.Nullable 4
+m 4 6/TransactionRequestImpl access$parseErrorBody
+p movies.manuelperera.com.topmovies.domain.objects.domain 7
+d 7/MovieAppDomain
+f 3 7/MovieAppDomain rType
+m 3 7/MovieAppDomain getRType
+m 3 7/MovieAppDomain getType
+f 3 7/MovieAppDomain title
+m 3 7/MovieAppDomain getTitle
+f 3 7/MovieAppDomain posterPath
+m 3 7/MovieAppDomain getPosterPath
+f 3 7/MovieAppDomain genres
+m 3 7/MovieAppDomain getGenres
+f 3 7/MovieAppDomain backdropPath
+m 3 7/MovieAppDomain getBackdropPath
+f 3 7/MovieAppDomain overview
+m 3 7/MovieAppDomain getOverview
+f 3 7/MovieAppDomain releaseDate
+m 3 7/MovieAppDomain getReleaseDate
+m 3 7/MovieAppDomain component4
+m 3 7/MovieAppDomain component5
+m 3 7/MovieAppDomain component6
+m 3 7/MovieAppDomain component7
+m 3 7/MovieAppDomain component8
+m 3 7/MovieAppDomain component9
+m 3 7/MovieAppDomain copy
+m 3 7/MovieAppDomain copy$default
+d 7/TopRatedMoviesAppDomain
+f 3 7/TopRatedMoviesAppDomain movies
+m 3 7/TopRatedMoviesAppDomain getMovies
+m 3 7/TopRatedMoviesAppDomain component2
+m 3 7/TopRatedMoviesAppDomain copy
+m 3 7/TopRatedMoviesAppDomain copy$default
+p movies.manuelperera.com.topmovies.domain.objects.api 8
+d 8/MovieApiResponse
+m 3 8/MovieApiResponse toAppDomain
+a com.google.gson.annotations.SerializedName 5
+f 5 8/MovieApiResponse voteCount
+f 5 8/MovieApiResponse voteAverage
+f 3 8/MovieApiResponse title
+m 3 8/MovieApiResponse getTitle
+f 5 8/MovieApiResponse posterPath
+f 3 8/MovieApiResponse posterPath
+m 3 8/MovieApiResponse getPosterPath
+f 5 8/MovieApiResponse originalLanguage
+f 3 8/MovieApiResponse originalLanguage
+m 3 8/MovieApiResponse getOriginalLanguage
+f 5 8/MovieApiResponse originalTitle
+f 3 8/MovieApiResponse originalTitle
+m 3 8/MovieApiResponse getOriginalTitle
+f 5 8/MovieApiResponse genres
+f 3 8/MovieApiResponse genres
+m 3 8/MovieApiResponse getGenres
+f 5 8/MovieApiResponse backdropPath
+f 3 8/MovieApiResponse backdropPath
+m 3 8/MovieApiResponse getBackdropPath
+f 3 8/MovieApiResponse overview
+m 3 8/MovieApiResponse getOverview
+f 5 8/MovieApiResponse releaseDate
+f 3 8/MovieApiResponse releaseDate
+m 3 8/MovieApiResponse getReleaseDate
+m 3 8/MovieApiResponse component5
+m 3 8/MovieApiResponse component7
+m 3 8/MovieApiResponse component8
+m 3 8/MovieApiResponse component9
+m 3 8/MovieApiResponse component10
+m 3 8/MovieApiResponse component11
+m 3 8/MovieApiResponse component13
+m 3 8/MovieApiResponse component14
+m 3 8/MovieApiResponse copy
+m 3 8/MovieApiResponse copy$default
+d 8/TopRatedMoviesApiResponse
+m 3 8/TopRatedMoviesApiResponse toAppDomain
+f 5 8/TopRatedMoviesApiResponse totalResults
+f 5 8/TopRatedMoviesApiResponse totalPages
+f 5 8/TopRatedMoviesApiResponse movies
+f 3 8/TopRatedMoviesApiResponse movies
+m 3 8/TopRatedMoviesApiResponse getMovies
+m 3 8/TopRatedMoviesApiResponse component4
+m 3 8/TopRatedMoviesApiResponse copy
+m 3 8/TopRatedMoviesApiResponse copy$default
+p movies.manuelperera.com.topmovies.client.apiclient 9
+d 9/MovieApiClient
+m 3 9/MovieApiClient getTopRatedMovies
+d 9/MovieApiClient$DefaultImpls
+d 9/MovieApiClientImpl
+m 3 9/MovieApiClientImpl getTopRatedMovies
+p movies.manuelperera.com.topmovies.injections.module.domain.service 10
+d 10/BusinessServiceModule
+c 0 10/BusinessServiceModule
+m 1 10/BusinessServiceModule movieService
+m 2 10/BusinessServiceModule movieService
+m 3 10/BusinessServiceModule movieService
+p movies.manuelperera.com.topmovies.screen.toprated.section 11
+d 11/TopRatedMoviesRecyclerAdapter
+d 11/TopRatedMoviesRecyclerAdapter$ProductsExtendedViewHolder
+f 3 11/TopRatedMoviesRecyclerAdapter$ProductsExtendedViewHolder view
+m 3 11/TopRatedMoviesRecyclerAdapter$ProductsExtendedViewHolder getView
+f 3 11/TopRatedMoviesRecyclerAdapter$ProductsExtendedViewHolder presenter
+m 3 11/TopRatedMoviesRecyclerAdapter$ProductsExtendedViewHolder getPresenter
+d 11/TopRatedMoviesRecyclerAdapter$FooterViewHolder
+a javax.inject.Inject 6
+f 6 11/TopRatedMoviesRecyclerAdapter topRatedMoviesRecyclerAdapterPresenter
+f 3 11/TopRatedMoviesRecyclerAdapter topRatedMoviesRecyclerAdapterPresenter
+m 3 11/TopRatedMoviesRecyclerAdapter getTopRatedMoviesRecyclerAdapterPresenter
+m 4 11/TopRatedMoviesRecyclerAdapter onCreateViewHolder
+d 11/TopRatedMoviesRecyclerAdapter$onCreateViewHolder$1
+d 11/TopRatedMoviesRecyclerAdapter$onCreateViewHolder$1$1
+d 11/TopRatedMoviesRecyclerAdapter$onCreateViewHolder$2
+d 11/TopRatedMoviesRecyclerAdapter$onCreateViewHolder$2$1
+d 11/TopRatedMoviesRecyclerAdapter$onCreateViewHolder$3
+d 11/TopRatedMoviesRecyclerAdapter$onCreateViewHolder$3$1
+m 3 11/TopRatedMoviesRecyclerAdapter getRecyclerView
+m 3 11/TopRatedMoviesRecyclerAdapter getDiffResultBinder
+d 11/TopRatedMoviesRecyclerAdapterPresenter
+f 3 11/TopRatedMoviesRecyclerAdapterPresenter errorMessage
+m 3 11/TopRatedMoviesRecyclerAdapterPresenter getErrorMessage
+m 3 11/TopRatedMoviesRecyclerAdapterPresenter getLoadObservable
+d 11/TopRatedMoviesRecyclerAdapterPresenter$getLoadObservable$1
+m 3 11/TopRatedMoviesRecyclerAdapterPresenter getPaginationObservable
+m 3 11/TopRatedMoviesRecyclerAdapterPresenter getItemClickCompletable
+m 3 11/TopRatedMoviesRecyclerAdapterPresenter getLoadingList
+m 3 11/TopRatedMoviesRecyclerAdapterPresenter getNetworkErrorList
+m 3 11/TopRatedMoviesRecyclerAdapterPresenter getFooterList
+m 3 11/TopRatedMoviesRecyclerAdapterPresenter getFullscreenLoadingList
+m 3 11/TopRatedMoviesRecyclerAdapterPresenter getFullscreenNetworkErrorList
+m 3 11/TopRatedMoviesRecyclerAdapterPresenter access$getContext$p
+d 11/TopRatedMoviesRecyclerAdapterView
+d 11/TopRatedMoviesRecyclerAdapterView$DefaultImpls
+p movies.manuelperera.com.topmovies.usecase.movie 12
+d 12/GetTopRatedMoviesUseCase
+m 3 12/GetTopRatedMoviesUseCase bind
+d 12/GetTopRatedMoviesUseCase$bind$1
+m 3 12/GetTopRatedMoviesUseCase$bind$1 apply
+d 12/SetMovieIdUseCase
+d 12/SetMovieIdUseCase$Params
+m 3 12/SetMovieIdUseCase bind
+d 12/SetTopRatedMoviesPaginationUseCase
+d 12/SetTopRatedMoviesPaginationUseCase$Params
+m 3 12/SetTopRatedMoviesPaginationUseCase bind
+p movies.manuelperera.com.topmovies.view 13
+d 13/Fonts
+f 4 13/Fonts typeface
+m 4 13/Fonts getTypeface
+m 4 13/Fonts getTypeface
+d 13/MovieChromeView
+a kotlin.jvm.JvmOverloads 7
+m 7 13/MovieChromeView <init>
+m 7 13/MovieChromeView <init>
+m 7 13/MovieChromeView <init>
+m 7 13/MovieChromeView <init>
+p movies.manuelperera.com.topmovies.client.retrofit 14
+d 14/RetrofitMovieApiClient
+a retrofit2.http.GET 8
+m 8 14/RetrofitMovieApiClient getTopRatedMovies
+m 3 14/RetrofitMovieApiClient getTopRatedMovies
+d 14/RetrofitMovieApiClient$DefaultImpls
+p movies.manuelperera.com.topmovies.injections.module 15
+d 15/AppModule
+c 0 15/AppModule
+m 1 15/AppModule context
+m 2 15/AppModule context
+m 3 15/AppModule context
+p movies.manuelperera.com.topmovies.view.viewholder 16
+d 16/ErrorSectionViewHolder
+f 3 16/ErrorSectionViewHolder view
+m 3 16/ErrorSectionViewHolder getView
+d 16/LoadingSectionViewHolder
+f 3 16/LoadingSectionViewHolder view
+m 3 16/LoadingSectionViewHolder getView
+d 16/RecyclerViewViewHolder
+p movies.manuelperera.com.topmovies.domain.service 17
+d 17/MovieService
+m 3 17/MovieService setMovieId
+d 17/MovieService$setMovieId$1
+m 3 17/MovieService getTopRatedMovies
+m 3 17/MovieService setTopRatedMoviesPagination
+d 17/MovieService$setTopRatedMoviesPagination$1
+m 4 17/MovieService access$getMovieId$p
+p movies.manuelperera.com.topmovies.view.widget 18
+d 18/TypefaceButton
+m 3 18/TypefaceButton asObservable
+d 18/TypefaceEditText
+d 18/TypefaceTextView
+m 3 18/TypefaceTextView asObservable
+p movies.manuelperera.com.topmovies.domain.repository.api 19
+d 19/MovieApiRepository
+m 3 19/MovieApiRepository getTopRatedMovies
+d 19/MovieApiRepository$getTopRatedMovies$1
+m 3 19/MovieApiRepository$getTopRatedMovies$1 apply
+p movies.manuelperera.com.topmovies.injections.module.domain.model 20
+d 20/ModelModule
+c 0 20/ModelModule
+m 1 20/ModelModule movieModel
+m 3 20/ModelModule movieModel
+p movies.manuelperera.com.topmovies.injections 21
+d 21/AppComponent
+c 2 21/AppComponent
+a dagger.Component 9
+c 9 21/AppComponent
+m 3 21/AppComponent provideContext
+m 3 21/AppComponent provideGetTopRatedMoviesUseCase
+m 3 21/AppComponent provideSetMovieIdUseCase
+m 3 21/AppComponent provideSetTopRatedMoviesPaginationUseCase
+d 21/AppComponent$DefaultImpls
+p movies.manuelperera.com.topmovies.extensions 22
+d 22/ExtensionsKt
+f 3 22/ExtensionsKt patternDateFromAPI
+f 3 22/ExtensionsKt patternDateOfApp
+m 3 22/ExtensionsKt inflate
+m 3 22/ExtensionsKt formatDate
+m 3 22/ExtensionsKt getErrorMessage

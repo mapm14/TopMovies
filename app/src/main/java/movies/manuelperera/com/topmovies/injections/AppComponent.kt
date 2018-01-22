@@ -9,6 +9,9 @@ import movies.manuelperera.com.topmovies.injections.module.domain.model.ModelMod
 import movies.manuelperera.com.topmovies.injections.module.domain.repository.ApiRepositoryModule
 import movies.manuelperera.com.topmovies.injections.module.domain.repository.CacheRepositoryModule
 import movies.manuelperera.com.topmovies.injections.module.domain.service.BusinessServiceModule
+import movies.manuelperera.com.topmovies.injections.module.usecase.ConfigUseCaseModule
+import movies.manuelperera.com.topmovies.injections.module.usecase.MoviesUseCaseModule
+import movies.manuelperera.com.topmovies.usecase.movie.*
 import javax.inject.Singleton
 
 @Singleton
@@ -19,13 +22,23 @@ import javax.inject.Singleton
     (BusinessServiceModule::class),
     (ModelModule::class),
     (ApiRepositoryModule::class),
-    (CacheRepositoryModule::class)])
-//    (ForecastUseCaseModule::class)])
+    (CacheRepositoryModule::class),
+    (MoviesUseCaseModule::class),
+    (ConfigUseCaseModule::class)])
 interface AppComponent {
 
     fun provideContext(): Context
 
     // Use Case
 
+    fun provideGetTopRatedMoviesUseCase(): GetTopRatedMoviesUseCase
+
+    fun provideSetMovieIdUseCase(): SetMovieSelectedUseCase
+
+    fun provideSetTopRatedMoviesPaginationUseCase(): SetTopRatedMoviesPaginationUseCase
+
+    fun provideGetMovieSelectedUseCase(): GetMovieSelectedUseCase
+
+    fun provideGetConfigUseCase(): GetConfigUseCase
 
 }

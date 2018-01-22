@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#e23636</color>
+    <color name="colorPrimaryDark">#c91d1d</color>
+    <color name="colorAccent">#FF5252</color>
+    <color name="colorAccentDark">#cc0000</color>
+
+    <color name="backgroundMovieChrome">#242424</color>
+    <color name="backgroundApp">#1a1a1a</color>
 </resources>

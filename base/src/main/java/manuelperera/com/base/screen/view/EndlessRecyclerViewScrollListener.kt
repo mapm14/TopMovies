@@ -9,7 +9,7 @@ import io.reactivex.Observer
 class EndlessRecyclerViewScrollListener(private val mLayoutManager: RecyclerView.LayoutManager, private val mObserver: Observer<in Int>, hasLoadingView: Boolean) : RecyclerView.OnScrollListener() {
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private val visibleThreshold = 4
+    private val visibleThreshold = 3
     // The current offset index of data you have loaded
     var currentPage = 1
         private set
@@ -94,6 +94,7 @@ class EndlessRecyclerViewScrollListener(private val mLayoutManager: RecyclerView
     fun reset() {
         currentPage = 1
         previousTotalItemCount = 0
+        isLoading = true
     }
 
     fun setCurrentPageAndPreviousTotalItemCount(page: Int) {

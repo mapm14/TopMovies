@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Top Movies</string>
+
+    // Network Error
+    <string name="network_error_message">No Internet connection</string>
+    <string name="retry">Retry</string>
+    <string name="ups_error_message">Ups! An error occurred</string>
+    <string name="unknown_error_message">Ups! Something did not go well</string>
+
+    // Recycler Items
+    <string name="end_of_list">End of list</string>
+
 </resources>
