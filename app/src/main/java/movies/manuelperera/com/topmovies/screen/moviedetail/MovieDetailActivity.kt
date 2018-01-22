@@ -3,6 +3,8 @@ package movies.manuelperera.com.topmovies.screen.moviedetail
 import android.os.Bundle
 import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.PagerSnapHelper
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import movies.manuelperera.com.topmovies.R
 import movies.manuelperera.com.topmovies.TopMoviesApp
@@ -38,6 +40,16 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailView {
             movieImageView.loadUrl(movieDetailPresenter.baseUrl + movie.posterPath, delegate = { supportStartPostponedEnterTransition() })
             movieDetailTitleTextView.text = movie.title
         }
+    }
+
+    fun configRecycler() {
+//        productsRecyclerView.apply {
+//            layoutManager = LinearLayoutManager(this@ProductsLandscapeActivity, LinearLayoutManager.HORIZONTAL, false)
+//            itemAnimator = null
+//            adapter = ProductsLandscapeActivityRecyclerAdapter(this@ProductsLandscapeActivity)
+//        }
+//        val snapHelper = PagerSnapHelper()
+//        snapHelper.attachToRecyclerView(productsRecyclerView)
     }
 
 }

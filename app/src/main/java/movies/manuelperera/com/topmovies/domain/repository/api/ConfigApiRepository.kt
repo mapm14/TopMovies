@@ -12,7 +12,7 @@ open class ConfigApiRepository(private val configApiClient: ConfigApiClient,
 
     open fun getConfig(): Observable<Transaction<ConfigAppDomain>> =
             configTransactionRequestFactory.createTransactionRequest().modifyObservable(configApiClient.getConfig()).map { transaction ->
-                Transaction(transaction.data?.toAppDomain(), transaction.status)
+                Transaction(transaction.data?.toAppDomain(), transaction.status, transaction.errorBody)
             }
 
 }

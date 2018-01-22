@@ -40,6 +40,16 @@ class TopRatedMoviesRecyclerAdapter(private val topRatedMoviesView: TopRatedMovi
         topRatedMoviesRecyclerAdapterPresenter.init(this)
     }
 
+//    override fun onViewAttachedToWindow(holder: RecyclerViewViewHolder<MovieUI>?) {
+//        println("ANIMAL POLLO " + (mRecyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition().toString())
+//        super.onViewAttachedToWindow(holder)
+//    }
+//
+//    override fun onViewDetachedFromWindow(holder: RecyclerViewViewHolder<MovieUI>?) {
+//        println("ANIMAL JIRAFA " + (mRecyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition().toString())
+//        super.onViewDetachedFromWindow(holder)
+//    }
+
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
         super.onDetachedFromRecyclerView(recyclerView)
         topRatedMoviesRecyclerAdapterPresenter.clear()
@@ -91,7 +101,8 @@ class TopRatedMoviesRecyclerAdapter(private val topRatedMoviesView: TopRatedMovi
         override fun configure(item: MovieUI?) {
             item?.let { movie ->
                 val movieChromeView: MovieChromeView = (view as MovieChromeView)
-                movie.posterPath = presenter.baseUrl + movie.posterPath
+                if (!movie.posterPath.contains(presenter.baseUrl))
+                    movie.posterPath = presenter.baseUrl + movie.posterPath
                 movieChromeView.setMovieChrome(movie)
                 applyMargins(movieChromeView, 5f, 5f, 3f, 3f)
                 presenter.bindItemClick(itemView, presenter.listData[adapterPosition])

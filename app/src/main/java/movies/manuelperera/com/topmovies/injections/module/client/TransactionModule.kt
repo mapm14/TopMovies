@@ -5,13 +5,13 @@ import dagger.Provides
 import manuelperera.com.base.client.transaction.TransactionRequestFactory
 import movies.manuelperera.com.topmovies.client.transaction.TransactionRequestFactoryImpl
 import movies.manuelperera.com.topmovies.domain.objects.api.ConfigApiResponse
-import movies.manuelperera.com.topmovies.domain.objects.api.TopRatedMoviesApiResponse
+import movies.manuelperera.com.topmovies.domain.objects.api.MoviesListApiResponse
 
 @Module
 class TransactionModule {
 
     @Provides
-    fun topRatedMoviesApiResponseTransactionRequestFactory(): TransactionRequestFactory<TopRatedMoviesApiResponse> =
+    fun topRatedMoviesApiResponseTransactionRequestFactory(): TransactionRequestFactory<MoviesListApiResponse> =
             TransactionRequestFactoryImpl()
 
     @Provides

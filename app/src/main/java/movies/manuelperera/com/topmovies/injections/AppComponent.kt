@@ -41,4 +41,6 @@ interface AppComponent {
 
     fun provideGetConfigUseCase(): GetConfigUseCase
 
+    fun provideGetSimilarMoviesUseCase(): GetSimilarMoviesUseCase
+
 }
