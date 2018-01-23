@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import movies.manuelperera.com.topmovies.domain.objects.domain.MovieAppDomain
 import java.util.*
 
-data class MovieApiResponse(
+open class MovieApiResponse(
         @SerializedName("vote_count")
         val voteCount: Int,
         val id: Int,
@@ -14,7 +14,7 @@ data class MovieApiResponse(
         val title: String,
         val popularity: Double,
         @SerializedName("poster_path")
-        val posterPath: String,
+        val posterPath: String?,
         @SerializedName("original_language")
         val originalLanguage: String,
         @SerializedName("original_title")
@@ -22,9 +22,9 @@ data class MovieApiResponse(
         @SerializedName("genre_ids")
         val genres: MutableList<Int>,
         @SerializedName("backdrop_path")
-        val backdropPath: String,
+        val backdropPath: String?,
         val adult: Boolean,
-        val overview: String,
+        val overview: String?,
         @SerializedName("release_date")
         val releaseDate: Date) {
 

@@ -16,7 +16,7 @@ import movies.manuelperera.com.topmovies.extensions.applyMargins
 import movies.manuelperera.com.topmovies.extensions.inflate
 import movies.manuelperera.com.topmovies.screen.toprated.TopRatedMoviesView
 import movies.manuelperera.com.topmovies.screen.toprated.section.injection.DaggerTopRatedMoviesRecyclerAdapterComponent
-import movies.manuelperera.com.topmovies.view.MovieChromeView
+import movies.manuelperera.com.topmovies.view.widget.MovieChromeView
 import movies.manuelperera.com.topmovies.view.viewholder.ErrorSectionViewHolder
 import movies.manuelperera.com.topmovies.view.viewholder.FooterSectionViewHolder
 import movies.manuelperera.com.topmovies.view.viewholder.LoadingSectionViewHolder
@@ -39,16 +39,6 @@ class TopRatedMoviesRecyclerAdapter(private val topRatedMoviesView: TopRatedMovi
         mRecyclerView = recyclerView
         topRatedMoviesRecyclerAdapterPresenter.init(this)
     }
-
-//    override fun onViewAttachedToWindow(holder: RecyclerViewViewHolder<MovieUI>?) {
-//        println("ANIMAL POLLO " + (mRecyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition().toString())
-//        super.onViewAttachedToWindow(holder)
-//    }
-//
-//    override fun onViewDetachedFromWindow(holder: RecyclerViewViewHolder<MovieUI>?) {
-//        println("ANIMAL JIRAFA " + (mRecyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition().toString())
-//        super.onViewDetachedFromWindow(holder)
-//    }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
         super.onDetachedFromRecyclerView(recyclerView)
@@ -104,7 +94,7 @@ class TopRatedMoviesRecyclerAdapter(private val topRatedMoviesView: TopRatedMovi
                 if (!movie.posterPath.contains(presenter.baseUrl))
                     movie.posterPath = presenter.baseUrl + movie.posterPath
                 movieChromeView.setMovieChrome(movie)
-                applyMargins(movieChromeView, 5f, 5f, 3f, 3f)
+                applyMargins(movieChromeView, 6f, 6f, 3.5f, 3.5f)
                 presenter.bindItemClick(itemView, presenter.listData[adapterPosition])
 
                 ViewCompat.setTransitionName(movieChromeView.movieImageView, movie.id.toString())

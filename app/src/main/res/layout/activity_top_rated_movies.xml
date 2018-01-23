@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundApp"
     tools:context="movies.manuelperera.com.topmovies.screen.toprated.TopRatedMoviesActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/topRatedMoviesToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="12dp"
+        tools:ignore="UnusedAttribute">
+
+        <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/app_name"
+            android:textColor="@color/grayTextColor"
+            android:textSize="18sp"
+            app:fontName="Semi_Bold" />
+
+    </android.support.v7.widget.Toolbar>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/topRatedMoviesSwipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/topRatedMoviesToolbar"
         android:visibility="gone">
 
         <android.support.v7.widget.RecyclerView
@@ -28,13 +49,15 @@
         android:id="@+id/topRatedMoviesLoadingView"
         layout="@layout/item_loading"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
 
     <include
         android:id="@+id/topRatedMoviesNetworkErrorView"
         layout="@layout/item_network_error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:visibility="gone" />

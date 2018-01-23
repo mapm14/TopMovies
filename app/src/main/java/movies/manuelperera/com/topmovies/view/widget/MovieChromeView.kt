@@ -1,9 +1,9 @@
-package movies.manuelperera.com.topmovies.view
+package movies.manuelperera.com.topmovies.view.widget
 
 import android.content.Context
+import android.os.Build
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
-import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.chrome_movie.view.*
 import movies.manuelperera.com.topmovies.R
 import movies.manuelperera.com.topmovies.domain.objects.ui.MovieUI
@@ -17,13 +17,13 @@ class MovieChromeView @JvmOverloads constructor(context: Context, attrs: Attribu
 
     private fun init() {
         inflate(context, R.layout.chrome_movie, this)
-        layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            elevation = 10f
     }
 
     fun setMovieChrome(movie: MovieUI) {
         movieImageView.loadUrl(movie.posterPath)
         movieChromeVoteAverageTextView.text = movie.voteAverage.toString()
-        movieChromeTitleTextView.text = movie.title
         requestLayout()
     }
 

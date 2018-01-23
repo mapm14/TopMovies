@@ -10,8 +10,8 @@ class MovieDetailPresenter(private val getMovieSelectedUseCase: GetMovieSelected
     var baseUrl = ""
 
     override fun init() {
-        getImageBaseUrl()
-        getMovieSelected()
+//        getImageBaseUrl()
+//        getMovieSelected()
     }
 
     private fun getMovieSelected() {

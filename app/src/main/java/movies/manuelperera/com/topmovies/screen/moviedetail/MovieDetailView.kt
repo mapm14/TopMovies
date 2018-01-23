@@ -7,4 +7,6 @@ interface MovieDetailView : PresenterView {
 
     fun onLoadMovieSelected(movieUI: MovieUI?)
 
+    fun finishEnterTransition()
+
 }

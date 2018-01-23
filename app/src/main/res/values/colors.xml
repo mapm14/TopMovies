@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#e23636</color>
-    <color name="colorPrimaryDark">#c91d1d</color>
-    <color name="colorAccent">#FF5252</color>
-    <color name="colorAccentDark">#cc0000</color>
+    <color name="colorPrimary">#2d2d2d</color>
+    <color name="colorPrimaryDark">#242424</color>
+    <color name="colorAccent">#CF2B42</color>
+    <color name="colorAccentDark">#C1293E</color>
 
-    <color name="backgroundMovieChrome">#242424</color>
+    <color name="backgroundMovieChrome">#232323</color>
     <color name="backgroundApp">#1a1a1a</color>
+
+    <color name="separator">#444444</color>
+    <color name="grayTextColor">#545454</color>
+    <color name="lightGrayTextColor">#666666</color>
 </resources>

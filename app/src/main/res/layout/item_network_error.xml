@@ -4,34 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:background="@android:color/transparent"
     android:gravity="center"
-    android:orientation="vertical">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:src="@mipmap/ic_launcher"
-        tools:ignore="ContentDescription" />
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
         android:id="@+id/networkErrorRetryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
         android:text="@string/network_error_message"
         android:textColor="@android:color/white"
-        app:fontName="Open_Sans_Regular"
-        app:letterSpacing="0.05" />
+        android:textSize="15sp"
+        app:fontName="Semi_Bold"
+        app:letterSpacing="0.02" />
 
     <movies.manuelperera.com.topmovies.view.widget.TypefaceButton
         android:id="@+id/networkErrorRetryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_button_gradient"
+        android:elevation="10dp"
         android:text="@string/retry"
-        app:fontName="Open_Sans_Regular"
-        app:letterSpacing="0.4" />
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        app:fontName="Semi_Bold"
+        tools:ignore="UnusedAttribute" />
 
 </LinearLayout>

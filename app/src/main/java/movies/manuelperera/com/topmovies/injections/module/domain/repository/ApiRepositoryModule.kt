@@ -6,6 +6,7 @@ import manuelperera.com.base.client.transaction.TransactionRequestFactory
 import movies.manuelperera.com.topmovies.client.apiclient.ConfigApiClient
 import movies.manuelperera.com.topmovies.client.apiclient.MovieApiClient
 import movies.manuelperera.com.topmovies.domain.objects.api.ConfigApiResponse
+import movies.manuelperera.com.topmovies.domain.objects.api.MovieDetailApiResponse
 import movies.manuelperera.com.topmovies.domain.objects.api.MoviesListApiResponse
 import movies.manuelperera.com.topmovies.domain.repository.api.ConfigApiRepository
 import movies.manuelperera.com.topmovies.domain.repository.api.MovieApiRepository
@@ -15,8 +16,9 @@ class ApiRepositoryModule {
 
     @Provides
     fun movieApiRepository(movieApiClient: MovieApiClient,
-                           movieListApiResponseTransactionRequestFactory: TransactionRequestFactory<MoviesListApiResponse>): MovieApiRepository =
-            MovieApiRepository(movieApiClient, movieListApiResponseTransactionRequestFactory)
+                           movieListApiResponseTransactionRequestFactory: TransactionRequestFactory<MoviesListApiResponse>,
+                           movieDetailApiResponseTransactionRequestFactory: TransactionRequestFactory<MovieDetailApiResponse>): MovieApiRepository =
+            MovieApiRepository(movieApiClient, movieListApiResponseTransactionRequestFactory, movieDetailApiResponseTransactionRequestFactory)
 
     @Provides
     fun configApiRepository(configApiClient: ConfigApiClient,

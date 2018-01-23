@@ -52,11 +52,13 @@ class TopRatedMoviesActivity : AppCompatActivity(), TopRatedMoviesView {
             val gridLayoutManager = GridLayoutManager(this@TopRatedMoviesActivity, 3)
             val mSpanSizeLookup: GridLayoutManager.SpanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
-                    val type = topRatedMoviesRecyclerAdapter.topRatedMoviesRecyclerAdapterPresenter.listData[position].rType
-                    return if (type == RecyclerViewAdapterItem.Type.LOADING || type == RecyclerViewAdapterItem.Type.ERROR ||
-                            type == RecyclerViewAdapterItem.Type.FOOTER || type == RecyclerViewAdapterItem.Type.FULLSCREEN_LOADING ||
-                            type == RecyclerViewAdapterItem.Type.FULLSCREEN_ERROR || type == RecyclerViewAdapterItem.Type.HEADER) {
-                        3
+                    return if (position <= topRatedMoviesRecyclerAdapter.topRatedMoviesRecyclerAdapterPresenter.listData.size - 1) {
+                        val type = topRatedMoviesRecyclerAdapter.topRatedMoviesRecyclerAdapterPresenter.listData[position].rType
+                        if (type == RecyclerViewAdapterItem.Type.LOADING || type == RecyclerViewAdapterItem.Type.ERROR ||
+                                type == RecyclerViewAdapterItem.Type.FOOTER || type == RecyclerViewAdapterItem.Type.FULLSCREEN_LOADING ||
+                                type == RecyclerViewAdapterItem.Type.FULLSCREEN_ERROR || type == RecyclerViewAdapterItem.Type.HEADER) {
+                            3
+                        } else 1
                     } else 1
                 }
             }

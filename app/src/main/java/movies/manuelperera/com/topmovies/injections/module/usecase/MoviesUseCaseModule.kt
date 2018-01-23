@@ -28,4 +28,12 @@ class MoviesUseCaseModule {
     fun getSimilarMoviesUseCase(movieService: MovieService): GetSimilarMoviesUseCase =
             GetSimilarMoviesUseCase(movieService)
 
+    @Provides
+    fun setSimilarMoviesPaginationUseCase(movieService: MovieService): SetSimilarMoviesPaginationUseCase =
+            SetSimilarMoviesPaginationUseCase(movieService)
+
+    @Provides
+    fun getMovieDetailUseCase(movieService: MovieService): GetMovieDetailUseCase =
+            GetMovieDetailUseCase(movieService)
+
 }

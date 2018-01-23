@@ -15,7 +15,7 @@ import movies.manuelperera.com.topmovies.usecase.movie.GetConfigUseCase
 import movies.manuelperera.com.topmovies.usecase.movie.GetTopRatedMoviesUseCase
 import movies.manuelperera.com.topmovies.usecase.movie.SetMovieSelectedUseCase
 import movies.manuelperera.com.topmovies.usecase.movie.SetTopRatedMoviesPaginationUseCase
-import movies.manuelperera.com.topmovies.view.MovieChromeView
+import movies.manuelperera.com.topmovies.view.widget.MovieChromeView
 
 class TopRatedMoviesRecyclerAdapterPresenter(private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
                                              private val setMovieSelectedUseCase: SetMovieSelectedUseCase,
@@ -32,13 +32,13 @@ class TopRatedMoviesRecyclerAdapterPresenter(private val getTopRatedMoviesUseCas
 
     override fun getLoadObservable(): Observable<Transaction<MutableList<MovieUI>>> =
             getTopRatedMoviesUseCase.bind().map { transaction ->
-                if (!transaction.isSuccess())
-                    errorMessage = getErrorMessage(transaction.errorBody, errorMessage)
-
                 view?.finishLoad()
 
-                transaction.data?.let { movies ->
-                    Transaction(movies.map { it.toUIModel() }.toMutableList(), transaction.status)
+                if (transaction.isSuccess() && transaction.data != null)
+                    Transaction(transaction.data?.map { it.toUIModel() }?.toMutableList(), transaction.status)
+                else {
+                    errorMessage = getErrorMessage(transaction.errorBody, errorMessage)
+                    Transaction(status = transaction.status, errorBody = transaction.errorBody)
                 }
             }
 

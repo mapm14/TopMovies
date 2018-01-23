@@ -15,6 +15,8 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import manuelperera.com.base.domain.model.ErrorBody
 import movies.manuelperera.com.topmovies.R
+import java.text.DecimalFormat
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -75,4 +77,13 @@ fun applyMargins(view: View, topMargin: Float = 0f, bottomMargin: Float = 0f, ma
     layoutParams.bottomMargin = convertDpToPixel(bottomMargin).toInt()
     view.layoutParams = layoutParams
     return view
+}
+
+fun String.removeBracketsAndCommas() =
+        this.replace(",", "").replace("[", "").replace("]", "")
+
+fun Int.addCommas(): String {
+    val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
+    formatter.applyPattern("#,###")
+    return formatter.format(this)
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundMovieChrome"
+    android:paddingTop="15dp">
+
+    <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+        android:id="@+id/itemKeyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/colorAccentDark"
+        android:textSize="16sp"
+        app:fontName="Bold_Italic"
+        tools:text="Título" />
+
+    <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+        android:id="@+id/itemValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/itemKeyTextView"
+        android:gravity="end"
+        android:textColor="@color/lightGrayTextColor"
+        android:textSize="16sp"
+        app:fontName="Light"
+        tools:text="Valor" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:layout_below="@id/itemValueTextView"
+        android:layout_marginTop="15dp"
+        android:background="@color/separator" />
+
+</RelativeLayout>

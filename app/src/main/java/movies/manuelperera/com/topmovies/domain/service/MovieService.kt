@@ -5,6 +5,7 @@ import io.reactivex.Observable
 import manuelperera.com.base.client.transaction.Transaction
 import manuelperera.com.base.client.transaction.TransactionStatus
 import movies.manuelperera.com.topmovies.domain.model.MovieModel
+import movies.manuelperera.com.topmovies.domain.objects.domain.MovieDetailAppDomain
 import movies.manuelperera.com.topmovies.domain.objects.domain.MoviesListAppDomain
 import movies.manuelperera.com.topmovies.domain.objects.ui.MovieUI
 
@@ -41,6 +42,20 @@ open class MovieService(private val movieModel: MovieModel) {
             }
 
     open fun getSimilarMovies(): Observable<Transaction<MoviesListAppDomain>> =
-            movieModel.getSimilarMovies(movieUI?.id ?: 0, topRatedMoviesPagination)
+            movieModel.getSimilarMovies(movieUI?.id ?: 0, similarMoviesPagination)
+                    .map { transaction ->
+                        if (transaction.isSuccess() && similarMoviesPagination == 1) {
+                            transaction.data?.let { data ->
+                                movieUI?.let { movie ->
+                                    data.movies.add(0, movie.toAppDomain())
+                                    Transaction(MoviesListAppDomain(data.page, data.movies), TransactionStatus.SUCCESS)
+                                }
+                            }
+                        } else
+                            transaction
+                    }
+
+    open fun getMovieDetail(movieId: Int): Observable<Transaction<MovieDetailAppDomain>> =
+            movieModel.getMovieDetail(movieId)
 
 }

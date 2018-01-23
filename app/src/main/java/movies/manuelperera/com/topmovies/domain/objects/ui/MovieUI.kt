@@ -1,6 +1,7 @@
 package movies.manuelperera.com.topmovies.domain.objects.ui
 
 import manuelperera.com.base.screen.presenter.recyclerview.RecyclerViewAdapterItem
+import movies.manuelperera.com.topmovies.domain.objects.domain.MovieAppDomain
 import java.util.*
 
 data class MovieUI(
@@ -11,7 +12,7 @@ data class MovieUI(
         var posterPath: String = "",
         val genres: MutableList<Int> = mutableListOf(),
         val backdropPath: String = "",
-        val overview: String = "",
+        val overview: String? = "",
         val releaseDate: Date = Date(),
         var rType: RecyclerViewAdapterItem.Type = RecyclerViewAdapterItem.Type.ITEM) : RecyclerViewAdapterItem {
 
@@ -20,5 +21,8 @@ data class MovieUI(
     }
 
     override fun getType(): RecyclerViewAdapterItem.Type = rType
+
+    fun toAppDomain() : MovieAppDomain =
+            MovieAppDomain(voteCount, id, voteAverage, title, posterPath, genres, backdropPath, overview, releaseDate)
 
 }
