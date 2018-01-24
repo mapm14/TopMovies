@@ -5,24 +5,24 @@ import io.reactivex.Observable
 import manuelperera.com.base.client.transaction.Transaction
 import manuelperera.com.base.client.transaction.TransactionStatus
 import movies.manuelperera.com.topmovies.domain.model.MovieModel
+import movies.manuelperera.com.topmovies.domain.objects.domain.MovieAppDomain
 import movies.manuelperera.com.topmovies.domain.objects.domain.MovieDetailAppDomain
 import movies.manuelperera.com.topmovies.domain.objects.domain.MoviesListAppDomain
-import movies.manuelperera.com.topmovies.domain.objects.ui.MovieUI
 
 open class MovieService(private val movieModel: MovieModel) {
 
-    private var movieUI: MovieUI? = null
+    private var movieSelected: MovieAppDomain? = null
     private var topRatedMoviesPagination: Int = 1
     private var similarMoviesPagination: Int = 1
 
-    open fun setMovie(movie: MovieUI): Completable =
+    open fun setMovie(movie: MovieAppDomain): Completable =
             Completable.create {
-                movieUI = movie
+                movieSelected = movie
                 it.onComplete()
             }
 
-    open fun getMovie(): Observable<Transaction<MovieUI>> =
-            Observable.just(Transaction(movieUI, if (movieUI != null) TransactionStatus.SUCCESS else TransactionStatus.EXCEPTION))
+    open fun getMovie(): Observable<Transaction<MovieAppDomain>> =
+            Observable.just(Transaction(movieSelected, if (movieSelected != null) TransactionStatus.SUCCESS else TransactionStatus.EXCEPTION))
 
     fun setTopRatedMoviesPagination(page: Int): Observable<Any> =
             Observable.create { observer ->
@@ -42,11 +42,11 @@ open class MovieService(private val movieModel: MovieModel) {
             }
 
     open fun getSimilarMovies(): Observable<Transaction<MoviesListAppDomain>> =
-            movieModel.getSimilarMovies(movieUI?.id ?: 0, similarMoviesPagination)
+            movieModel.getSimilarMovies(movieSelected?.id ?: 0, similarMoviesPagination)
                     .map { transaction ->
                         if (transaction.isSuccess() && similarMoviesPagination == 1) {
-                            transaction.data?.movies?.add(0, movieUI?.toAppDomain()
-                                    ?: MovieUI().toAppDomain())
+                            transaction.data?.movies?.add(0, movieSelected
+                                    ?: MovieAppDomain())
                             Transaction(MoviesListAppDomain(transaction.data?.page
                                     ?: similarMoviesPagination, transaction.data?.movies
                                     ?: mutableListOf()), TransactionStatus.SUCCESS)

@@ -11,6 +11,8 @@ import movies.manuelperera.com.topmovies.domain.service.MovieService
 class GetMovieSelectedUseCase(private val movieService: MovieService) : UseCase<Observable<Transaction<MovieUI>>> {
 
     override fun bind(): Observable<Transaction<MovieUI>> =
-            movieService.getMovie().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            movieService.getMovie().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).map { transaction ->
+                Transaction(transaction.data?.toUIModel(), transaction.status)
+            }
 
 }

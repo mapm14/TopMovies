@@ -11,7 +11,7 @@ import movies.manuelperera.com.topmovies.domain.service.MovieService
 class SetMovieSelectedUseCase(private val movieService: MovieService) : UseCaseWithParams<Completable, SetMovieSelectedUseCase.Params> {
 
     override fun bind(params: Params): Completable =
-            movieService.setMovie(params.movie).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            movieService.setMovie(params.movie.toAppDomain()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
     class Params(val movie: MovieUI) : UseCaseParams()
 
