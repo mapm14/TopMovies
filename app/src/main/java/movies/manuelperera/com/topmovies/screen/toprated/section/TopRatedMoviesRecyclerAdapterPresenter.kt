@@ -23,7 +23,7 @@ class TopRatedMoviesRecyclerAdapterPresenter(private val getTopRatedMoviesUseCas
                                              private val getConfigUseCase: GetConfigUseCase,
                                              context: Context) : InfiniteRecyclerViewAdapterPresenter<TopRatedMoviesRecyclerAdapterView, MovieUI>() {
 
-    var errorMessage = context.getString(R.string.ups_error_message)
+    var errorMessage: String = context.getString(R.string.ups_error_message)
     var baseUrl = ""
 
     init {

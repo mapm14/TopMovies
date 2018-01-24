@@ -22,7 +22,6 @@ class TransactionRequestImpl<T : Any> : TransactionRequest<T> {
     private val networkErrorCode = 408
     private val errorMessage = context.getString(R.string.ups_error_message)
     private val networkErrorMessage = context.getString(R.string.network_error_message)
-    private val unknownErrorMessage = context.getString(R.string.unknown_error_message)
 
     override fun modifyObservable(observable: Observable<Result<T>>): Observable<Transaction<T>> {
         return observable
@@ -55,7 +54,7 @@ class TransactionRequestImpl<T : Any> : TransactionRequest<T> {
                 }
                 .timeout(BuildConfig.TIME_OUT, TimeUnit.SECONDS, Observable.create<Transaction<T>> { subscriber ->
                     val errorBody = ErrorBody(networkErrorCode, networkErrorMessage)
-                    subscriber.onNext(Transaction(status = TransactionStatus.TIMEOUT, errorBody =  errorBody))
+                    subscriber.onNext(Transaction(status = TransactionStatus.TIMEOUT, errorBody = errorBody))
                     subscriber.onComplete()
                 })
     }
@@ -83,7 +82,7 @@ class TransactionRequestImpl<T : Any> : TransactionRequest<T> {
                             }
                         } else {
                             val errorBody = ErrorBody(networkErrorCode, networkErrorMessage)
-                            observer.onNext(Transaction(status = TransactionStatus.TIMEOUT, errorBody =  errorBody))
+                            observer.onNext(Transaction(status = TransactionStatus.TIMEOUT, errorBody = errorBody))
                         }
 
                         observer.onComplete()

@@ -1,7 +1,6 @@
 package movies.manuelperera.com.topmovies.domain.objects.domain
 
 import movies.manuelperera.com.topmovies.domain.objects.ui.MovieUI
-import java.util.*
 
 data class MovieAppDomain(
         val voteCount: Int,
@@ -12,9 +11,10 @@ data class MovieAppDomain(
         val genres: MutableList<Int>,
         val backdropPath: String?,
         val overview: String?,
-        val releaseDate: Date) {
+        val releaseDate: String) {
 
     fun toUIModel(): MovieUI =
-            MovieUI(voteCount, id, voteAverage, title, posterPath ?: "", genres, backdropPath ?: "", overview, releaseDate)
+            MovieUI(voteCount, id, voteAverage, title, posterPath ?: "", genres, backdropPath
+                    ?: "", overview, releaseDate)
 
 }

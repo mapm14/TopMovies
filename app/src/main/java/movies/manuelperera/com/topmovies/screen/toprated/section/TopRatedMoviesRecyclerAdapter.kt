@@ -94,7 +94,7 @@ class TopRatedMoviesRecyclerAdapter(private val topRatedMoviesView: TopRatedMovi
                 if (!movie.posterPath.contains(presenter.baseUrl))
                     movie.posterPath = presenter.baseUrl + movie.posterPath
                 movieChromeView.setMovieChrome(movie)
-                applyMargins(movieChromeView, 6f, 6f, 3.5f, 3.5f)
+                applyMargins(movieChromeView, 3.5f, 3.5f, 2.5f, 2.5f)
                 presenter.bindItemClick(itemView, presenter.listData[adapterPosition])
 
                 ViewCompat.setTransitionName(movieChromeView.movieImageView, movie.id.toString())

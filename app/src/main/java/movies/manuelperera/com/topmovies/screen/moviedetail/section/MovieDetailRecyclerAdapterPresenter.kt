@@ -22,7 +22,7 @@ class MovieDetailRecyclerAdapterPresenter(private val getSimilarMoviesUseCase: G
                                           private val getMovieDetailUseCase: GetMovieDetailUseCase,
                                           context: Context) : InfiniteRecyclerViewAdapterPresenter<MovieDetailRecyclerAdapterView, MovieUI>() {
 
-    var errorMessage = context.getString(R.string.ups_error_message)
+    var errorMessage: String = context.getString(R.string.ups_error_message)
     var baseUrl = ""
 
     init {
@@ -64,7 +64,7 @@ class MovieDetailRecyclerAdapterPresenter(private val getSimilarMoviesUseCase: G
     private fun getImageBaseUrl() =
             addSubscription(getConfigUseCase.bind().subscribe { transaction ->
                 transaction.data?.let {
-                    baseUrl = it.images.getChromePosterSizeUrl()
+                    baseUrl = it.images.getFullPosterSizeUrl()
                 }
             })
 

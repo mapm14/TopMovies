@@ -2,7 +2,6 @@ package movies.manuelperera.com.topmovies.domain.objects.api
 
 import com.google.gson.annotations.SerializedName
 import movies.manuelperera.com.topmovies.domain.objects.domain.MovieDetailAppDomain
-import java.util.*
 
 data class MovieDetailApiResponse(
         @SerializedName("vote_count")
@@ -24,7 +23,7 @@ data class MovieDetailApiResponse(
         val adult: Boolean,
         val overview: String?,
         @SerializedName("release_date")
-        val releaseDate: Date,
+        val releaseDate: String,
         val budget: Int,
         val homepage: String?,
         val populatiry: Double,

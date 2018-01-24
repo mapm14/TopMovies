@@ -1,7 +1,6 @@
 package movies.manuelperera.com.topmovies.domain.objects.domain
 
 import movies.manuelperera.com.topmovies.domain.objects.ui.MovieDetailUI
-import java.util.*
 
 data class MovieDetailAppDomain(
         val voteCount: Int,
@@ -16,7 +15,7 @@ data class MovieDetailAppDomain(
         val backdropPath: String?,
         val adult: Boolean,
         val overview: String?,
-        val releaseDate: Date,
+        val releaseDate: String,
         val budget: Int,
         val homepage: String?,
         val populatiry: Double,
@@ -32,6 +31,8 @@ data class MovieDetailAppDomain(
         val spokenLanguages: List<SpokenLanguagesAppDomain>) {
 
     fun toAppDomain(): MovieDetailUI =
-            MovieDetailUI(voteCount, id, video, voteAverage, title, popularity, posterPath ?: "", originalLanguage, originalTitle, backdropPath ?: "", adult, overview ?: "", releaseDate, budget, homepage, populatiry, imdbId, revenue, runtime, status, tagline, belongsToCollection, genres, productionCompanies, productionCountries, spokenLanguages)
+            MovieDetailUI(voteCount, id, video, voteAverage, title, popularity, posterPath
+                    ?: "", originalLanguage, originalTitle, backdropPath ?: "", adult, overview
+                    ?: "", releaseDate, budget, homepage, populatiry, imdbId, revenue, runtime, status, tagline, belongsToCollection, genres, productionCompanies, productionCountries, spokenLanguages)
 
 }

@@ -12,22 +12,22 @@
     <ImageView
         android:id="@+id/movieImageView"
         android:layout_width="match_parent"
-        android:layout_height="185dp"
-        android:layout_margin="3.5dp"
+        android:layout_height="235dp"
+        android:layout_margin="2.5dp"
         android:background="@color/backgroundMovieChrome"
         android:foreground="?attr/selectableItemBackground"
         tools:ignore="ContentDescription" />
 
     <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
         android:id="@+id/movieChromeVoteAverageTextView"
-        android:layout_width="22dp"
-        android:layout_height="16dp"
+        android:layout_width="24dp"
+        android:layout_height="18dp"
         android:layout_alignBottom="@id/movieImageView"
         android:layout_alignParentEnd="true"
         android:background="@drawable/rounded_button_dark"
         android:gravity="center"
         android:textColor="@color/lightGrayTextColor"
-        android:textSize="7.7sp"
+        android:textSize="10sp"
         app:fontName="Semi_Bold"
         tools:ignore="RtlSymmetry,SmallSp"
         tools:text="9.2" />

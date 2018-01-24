@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 const val patternDateFromAPI = "yyyy-MM-dd"
-const val patternDateOfApp = "dd-MM-yyyy"
+const val patternDateOfApp = "dd/MM/yyyy"
 
 fun ViewGroup.inflate(layoutResourceId: Int): View = LayoutInflater.from(context).inflate(layoutResourceId, this, false)
 

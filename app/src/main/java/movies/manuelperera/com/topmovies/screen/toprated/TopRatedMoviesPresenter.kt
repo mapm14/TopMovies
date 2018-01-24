@@ -7,9 +7,7 @@ import movies.manuelperera.com.topmovies.extensions.getErrorMessage
 import movies.manuelperera.com.topmovies.usecase.movie.GetConfigUseCase
 
 class TopRatedMoviesPresenter(private val getConfigUseCase: GetConfigUseCase,
-                              context: Context) : Presenter<TopRatedMoviesView>() {
-
-    var errorMessage: String = context.getString(R.string.ups_error_message)
+                              private val context: Context) : Presenter<TopRatedMoviesView>() {
 
     override fun init() {
         getConfig()
@@ -20,7 +18,7 @@ class TopRatedMoviesPresenter(private val getConfigUseCase: GetConfigUseCase,
             if (transaction.isSuccess())
                 view?.onConfigLoaded()
             else
-                view?.onLoadError(getErrorMessage(transaction.errorBody, errorMessage))
+                view?.onLoadError(getErrorMessage(transaction.errorBody, context.getString(R.string.ups_error_message)))
         })
     }
 

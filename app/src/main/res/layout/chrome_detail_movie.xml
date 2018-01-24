@@ -1,85 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movieChromeDetailContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundMovieChrome"
-    android:foreground="?attr/selectableItemBackground"
-    android:orientation="vertical">
+    android:background="@color/backgroundMovieChrome">
 
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:fitsSystemWindows="true">
 
-        <ImageView
-            android:id="@+id/movieImageView"
+        <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/backgroundApp"
-            android:elevation="6dp"
-            tools:ignore="ContentDescription,UnusedAttribute" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="12dp"
+            app:layout_scrollFlags="scroll|enterAlways"
+            tools:ignore="UnusedAttribute">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp">
-
-            <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
-                android:id="@+id/movieChromeDetailTitleTextView"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/backArrowImageView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@+id/movieChromeDetailVoteAverageTextView"
-                android:paddingEnd="20dp"
-                android:paddingStart="16dp"
-                android:textColor="@android:color/white"
-                android:textSize="26sp"
-                app:fontName="Bold_Italic"
-                app:letterSpacing="-0.02"
-                tools:text="The Avengers" />
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/abc_ic_ab_back_material"
+                tools:ignore="ContentDescription,PrivateResource" />
 
-            <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
-                android:id="@+id/movieChromeDetailVoteAverageTextView"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_gravity="center"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/rounded_button_gradient"
-                android:gravity="center"
-                android:paddingBottom="2dp"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                app:fontName="Semi_Bold"
-                tools:ignore="SmallSp"
-                tools:text="9.2" />
+        </android.support.v7.widget.Toolbar>
 
-        </RelativeLayout>
+    </android.support.design.widget.AppBarLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.7dp"
-            android:layout_marginTop="12dp"
-            android:background="@color/separator" />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-            android:id="@+id/movieChromeDetailValuesLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            android:visibility="visible">
+            android:background="@color/backgroundMovieChrome"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/movieChromeDetailOverviewContainer"
+            <ImageView
+                android:id="@+id/movieImageView"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/backgroundApp"
+                android:elevation="6dp"
+                tools:ignore="ContentDescription,UnusedAttribute" />
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp">
+
+                <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+                    android:id="@+id/movieChromeDetailTitleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/movieChromeDetailVoteAverageTextView"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="16dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="26sp"
+                    app:fontName="Bold_Italic"
+                    app:letterSpacing="-0.02"
+                    tools:text="The Avengers:\nCivil War" />
+
+                <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+                    android:id="@+id/movieChromeDetailVoteAverageTextView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/rounded_button_gradient"
+                    android:gravity="center"
+                    android:paddingBottom="2dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    app:fontName="Semi_Bold"
+                    tools:ignore="SmallSp"
+                    tools:text="9.2" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/separator" />
+
+            <LinearLayout
+                android:id="@+id/movieChromeDetailOverviewLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
                     android:layout_width="match_parent"
@@ -115,28 +139,37 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/movieChromeDetailValuesLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+            </LinearLayout>
+
+            <include
+                android:id="@+id/movieChromeDetailLoadingView"
+                layout="@layout/item_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="90dp"
+                android:visibility="visible" />
+
+            <include
+                android:id="@+id/movieChromeDetailNetworkErrorView"
+                layout="@layout/item_network_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="90dp"
+                android:visibility="gone" />
+
         </LinearLayout>
 
-        <include
-            android:id="@+id/movieChromeDetailLoadingView"
-            layout="@layout/item_loading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="90dp"
-            android:visibility="visible" />
+    </android.support.v4.widget.NestedScrollView>
 
-        <include
-            android:id="@+id/movieChromeDetailNetworkErrorView"
-            layout="@layout/item_network_error"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="90dp"
-            android:visibility="gone" />
-
-    </LinearLayout>
-
-</android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

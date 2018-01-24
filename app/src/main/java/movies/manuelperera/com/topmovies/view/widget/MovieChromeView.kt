@@ -2,6 +2,7 @@ package movies.manuelperera.com.topmovies.view.widget
 
 import android.content.Context
 import android.os.Build
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import kotlinx.android.synthetic.main.chrome_movie.view.*
@@ -19,6 +20,7 @@ class MovieChromeView @JvmOverloads constructor(context: Context, attrs: Attribu
         inflate(context, R.layout.chrome_movie, this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             elevation = 10f
+        cardBackgroundColor = ContextCompat.getColorStateList(context, R.color.backgroundMovieChrome)
     }
 
     fun setMovieChrome(movie: MovieUI) {

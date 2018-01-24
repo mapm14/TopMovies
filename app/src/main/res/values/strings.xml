@@ -20,7 +20,10 @@
     <string name="runtime">Runtime</string>
     <string name="adult">Adult</string>
     <string name="homepage">Homepage</string>
+    <string name="release_date">Release date</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="format_minutes">%1s min</string>
+    <string name="format_dollars">%1s $</string>
 
 </resources>

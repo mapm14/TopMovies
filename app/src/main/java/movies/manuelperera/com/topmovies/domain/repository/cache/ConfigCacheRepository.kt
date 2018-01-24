@@ -6,7 +6,7 @@ import manuelperera.com.base.client.transaction.Transaction
 import manuelperera.com.base.client.transaction.TransactionStatus
 import movies.manuelperera.com.topmovies.domain.objects.domain.ConfigAppDomain
 
-open class ConfigCacheRepository() {
+open class ConfigCacheRepository {
 
     private var config: ConfigAppDomain? = null
 

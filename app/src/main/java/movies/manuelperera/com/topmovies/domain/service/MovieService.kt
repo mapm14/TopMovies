@@ -45,12 +45,11 @@ open class MovieService(private val movieModel: MovieModel) {
             movieModel.getSimilarMovies(movieUI?.id ?: 0, similarMoviesPagination)
                     .map { transaction ->
                         if (transaction.isSuccess() && similarMoviesPagination == 1) {
-                            transaction.data?.let { data ->
-                                movieUI?.let { movie ->
-                                    data.movies.add(0, movie.toAppDomain())
-                                    Transaction(MoviesListAppDomain(data.page, data.movies), TransactionStatus.SUCCESS)
-                                }
-                            }
+                            transaction.data?.movies?.add(0, movieUI?.toAppDomain()
+                                    ?: MovieUI().toAppDomain())
+                            Transaction(MoviesListAppDomain(transaction.data?.page
+                                    ?: similarMoviesPagination, transaction.data?.movies
+                                    ?: mutableListOf()), TransactionStatus.SUCCESS)
                         } else
                             transaction
                     }

@@ -11,6 +11,7 @@ import movies.manuelperera.com.topmovies.R
 import movies.manuelperera.com.topmovies.domain.objects.ui.MovieDetailUI
 import movies.manuelperera.com.topmovies.domain.objects.ui.MovieUI
 import movies.manuelperera.com.topmovies.extensions.addCommas
+import movies.manuelperera.com.topmovies.extensions.formatDate
 import movies.manuelperera.com.topmovies.extensions.loadUrl
 import movies.manuelperera.com.topmovies.extensions.removeBracketsAndCommas
 
@@ -31,6 +32,12 @@ class MovieDetailChromeView @JvmOverloads constructor(context: Context, attrs: A
         movieImageView.loadUrl(movie.posterPath, delegate = { delegate() })
         movieChromeDetailVoteAverageTextView.text = movie.voteAverage.toString()
         movieChromeDetailTitleTextView.text = movie.title
+        if (!movie.overview.isNullOrEmpty()) {
+            movieChromeDetailOverviewLinearLayout.visibility = View.VISIBLE
+            movieChromeDetailOverviewTextView.text = movie.overview
+        } else
+            movieChromeDetailOverviewLinearLayout.visibility = View.GONE
+
         requestLayout()
     }
 
@@ -40,19 +47,16 @@ class MovieDetailChromeView @JvmOverloads constructor(context: Context, attrs: A
         movieChromeDetailNetworkErrorView.visibility = View.GONE
         movieChromeDetailValuesLinearLayout.visibility = View.VISIBLE
 
-        if (!movie.overview.isNullOrEmpty()) {
-            movieChromeDetailOverviewContainer.visibility = View.VISIBLE
-            movieChromeDetailOverviewTextView.text = movie.overview
-        } else
-            movieChromeDetailOverviewContainer.visibility = View.GONE
-
-        val runtimeKeyValue = ItemKeyValue(context).config(context.getString(R.string.runtime), movie.runtime.toString() + " min")
+        val runtimeKeyValue = ItemKeyValue(context).config(context.getString(R.string.runtime),  context.getString(R.string.format_minutes, movie.runtime.toString()))
         movieChromeDetailValuesLinearLayout.addView(runtimeKeyValue)
 
-        val budgetKeyValue = ItemKeyValue(context).config(context.getString(R.string.budget), movie.budget.addCommas() + " $")
+        val releaseDateKeyValue = ItemKeyValue(context).config(context.getString(R.string.release_date), movie.releaseDate.formatDate())
+        movieChromeDetailValuesLinearLayout.addView(releaseDateKeyValue)
+
+        val budgetKeyValue = ItemKeyValue(context).config(context.getString(R.string.budget), context.getString(R.string.format_dollars, movie.budget.addCommas()))
         movieChromeDetailValuesLinearLayout.addView(budgetKeyValue)
 
-        val revenueKeyValue = ItemKeyValue(context).config(context.getString(R.string.revenue), movie.revenue.addCommas() + " $")
+        val revenueKeyValue = ItemKeyValue(context).config(context.getString(R.string.revenue), context.getString(R.string.format_dollars, movie.revenue.addCommas()))
         movieChromeDetailValuesLinearLayout.addView(revenueKeyValue)
 
         val adultKeyValue = ItemKeyValue(context).config(context.getString(R.string.adult), if (movie.adult) context.getString(R.string.yes) else context.getString(R.string.no))

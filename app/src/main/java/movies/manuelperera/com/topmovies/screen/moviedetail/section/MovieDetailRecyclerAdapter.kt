@@ -7,7 +7,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.chrome_movie.view.*
+import com.jakewharton.rxbinding2.view.RxView
+import kotlinx.android.synthetic.main.chrome_detail_movie.view.*
 import kotlinx.android.synthetic.main.item_network_error.view.*
 import manuelperera.com.base.screen.presenter.recyclerview.RecyclerViewAdapterItem
 import movies.manuelperera.com.topmovies.R
@@ -102,6 +103,10 @@ class MovieDetailRecyclerAdapter(private val movieDetailView: MovieDetailView) :
             item?.let { movie ->
                 val movieDetailChromeView: MovieDetailChromeView = (view as MovieDetailChromeView)
 
+                RxView.clicks(movieDetailChromeView.backArrowImageView).subscribe {
+                    movieDetailView.onBackArrowClick()
+                }
+
                 if (!movie.posterPath.contains(presenter.baseUrl))
                     movie.posterPath = presenter.baseUrl + movie.posterPath
 
@@ -114,8 +119,6 @@ class MovieDetailRecyclerAdapter(private val movieDetailView: MovieDetailView) :
                 } else {
                     movieDetailChromeView.setMovieChromeWithMovieUI(movie)
                 }
-
-//                applyMargins(movieDetailChromeView, 0f, 0f, 0f, 0f)
 
                 presenter.bindItemClick(itemView, presenter.listData[adapterPosition])
 

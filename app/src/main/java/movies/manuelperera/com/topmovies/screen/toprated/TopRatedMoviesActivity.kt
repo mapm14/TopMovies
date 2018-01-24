@@ -49,7 +49,7 @@ class TopRatedMoviesActivity : AppCompatActivity(), TopRatedMoviesView {
     private fun configRecycler() {
         topRatedMoviesRecyclerView?.apply {
             val topRatedMoviesRecyclerAdapter = TopRatedMoviesRecyclerAdapter(this@TopRatedMoviesActivity)
-            val gridLayoutManager = GridLayoutManager(this@TopRatedMoviesActivity, 3)
+            val gridLayoutManager = GridLayoutManager(this@TopRatedMoviesActivity, 2)
             val mSpanSizeLookup: GridLayoutManager.SpanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     return if (position <= topRatedMoviesRecyclerAdapter.topRatedMoviesRecyclerAdapterPresenter.listData.size - 1) {
@@ -57,7 +57,7 @@ class TopRatedMoviesActivity : AppCompatActivity(), TopRatedMoviesView {
                         if (type == RecyclerViewAdapterItem.Type.LOADING || type == RecyclerViewAdapterItem.Type.ERROR ||
                                 type == RecyclerViewAdapterItem.Type.FOOTER || type == RecyclerViewAdapterItem.Type.FULLSCREEN_LOADING ||
                                 type == RecyclerViewAdapterItem.Type.FULLSCREEN_ERROR || type == RecyclerViewAdapterItem.Type.HEADER) {
-                            3
+                            2
                         } else 1
                     } else 1
                 }

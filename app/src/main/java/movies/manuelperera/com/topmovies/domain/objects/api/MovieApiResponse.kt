@@ -2,9 +2,8 @@ package movies.manuelperera.com.topmovies.domain.objects.api
 
 import com.google.gson.annotations.SerializedName
 import movies.manuelperera.com.topmovies.domain.objects.domain.MovieAppDomain
-import java.util.*
 
-open class MovieApiResponse(
+data class MovieApiResponse(
         @SerializedName("vote_count")
         val voteCount: Int,
         val id: Int,
@@ -26,7 +25,7 @@ open class MovieApiResponse(
         val adult: Boolean,
         val overview: String?,
         @SerializedName("release_date")
-        val releaseDate: Date) {
+        val releaseDate: String) {
 
     fun toAppDomain(): MovieAppDomain =
             MovieAppDomain(voteCount, id, voteAverage, title, posterPath, genres, backdropPath, overview, releaseDate)

@@ -4,7 +4,6 @@ import movies.manuelperera.com.topmovies.domain.objects.domain.BelongsToCollecti
 import movies.manuelperera.com.topmovies.domain.objects.domain.ProductionCountriesAppDomain
 import movies.manuelperera.com.topmovies.domain.objects.domain.SimpleValueAppDomain
 import movies.manuelperera.com.topmovies.domain.objects.domain.SpokenLanguagesAppDomain
-import java.util.*
 
 data class MovieDetailUI(
         val voteCount: Int,
@@ -19,7 +18,7 @@ data class MovieDetailUI(
         val backdropPath: String,
         val adult: Boolean,
         val overview: String?,
-        val releaseDate: Date,
+        val releaseDate: String,
         val budget: Int,
         val homepage: String?,
         val populatiry: Double,
