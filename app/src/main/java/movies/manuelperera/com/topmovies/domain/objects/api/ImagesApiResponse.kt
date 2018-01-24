@@ -19,6 +19,6 @@ data class ImagesApiResponse(@SerializedName("base_url")
                              val stillSizes: List<String>) {
 
     fun toAppDomain(): ImagesAppDomain =
-            ImagesAppDomain(baseUrl, posterSizes)
+            ImagesAppDomain(secureBaseUrl, posterSizes)
 
 }

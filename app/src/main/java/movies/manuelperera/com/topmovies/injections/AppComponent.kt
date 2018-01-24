@@ -33,7 +33,7 @@ interface AppComponent {
 
     fun provideGetTopRatedMoviesUseCase(): GetTopRatedMoviesUseCase
 
-    fun provideSetMovieIdUseCase(): SetMovieSelectedUseCase
+    fun provideSetMovieSelectedUseCase(): SetMovieSelectedUseCase
 
     fun provideSetTopRatedMoviesPaginationUseCase(): SetTopRatedMoviesPaginationUseCase
 
