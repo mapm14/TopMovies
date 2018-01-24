@@ -28,6 +28,6 @@ data class MovieApiResponse(
         val releaseDate: String) {
 
     fun toAppDomain(): MovieAppDomain =
-            MovieAppDomain(voteCount, id, voteAverage, title, posterPath, genres, backdropPath, overview, releaseDate)
+            MovieAppDomain(voteCount, id, voteAverage, title, posterPath ?: "", genres, backdropPath, overview, releaseDate)
 
 }

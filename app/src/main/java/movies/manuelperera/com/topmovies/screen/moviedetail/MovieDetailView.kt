@@ -9,4 +9,6 @@ interface MovieDetailView : PresenterView {
 
     fun onBackArrowClick()
 
+    fun openWeb(url: String)
+
 }

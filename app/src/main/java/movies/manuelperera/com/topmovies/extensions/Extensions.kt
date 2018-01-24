@@ -15,6 +15,8 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import manuelperera.com.base.domain.model.ErrorBody
 import movies.manuelperera.com.topmovies.R
+import movies.manuelperera.com.topmovies.domain.objects.domain.ImagesAppDomain
+import movies.manuelperera.com.topmovies.domain.objects.domain.MovieAppDomain
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -43,9 +45,12 @@ fun Activity.hideKeyboard() {
     }
 }
 
-fun ImageView.loadUrl(url: String?, placeholder: Int = R.mipmap.ic_launcher, delegate: () -> Unit = {}) {
-    if (url != null)
-        Picasso.with(context)
+fun ImageView.loadUrl(url: String?, placeholder: Int = R.drawable.ic_film, delegate: () -> Unit = {}) {
+    url?.let {
+        val builder = Picasso.Builder(context)
+        builder.listener { _, _, _ -> delegate() }
+
+        builder.build()
                 .load(url)
                 .placeholder(placeholder)
                 .into(this, object : Callback {
@@ -57,6 +62,7 @@ fun ImageView.loadUrl(url: String?, placeholder: Int = R.mipmap.ic_launcher, del
                         delegate()
                     }
                 })
+    }
 }
 
 fun SwipeRefreshLayout.setThemeColors() {
@@ -86,4 +92,12 @@ fun Int.addCommas(): String {
     val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
     formatter.applyPattern("#,###")
     return formatter.format(this)
+}
+
+fun addBaseUrlToMovieList(imagesAppDomain: ImagesAppDomain?, movies: MutableList<MovieAppDomain>?) {
+    imagesAppDomain?.secureBaseUrl?.let { baseUrl ->
+        (movies ?: mutableListOf())
+                .filterNot { it.posterPath.contains(baseUrl) }
+                .forEach { it.posterPath = imagesAppDomain.getChromePosterSizeUrl() + it.posterPath }
+    }
 }

@@ -7,14 +7,14 @@ data class MovieAppDomain(
         val id: Int = 0,
         val voteAverage: Double = 0.0,
         val title: String = "",
-        val posterPath: String? = "",
+        var posterPath: String = "",
         val genres: MutableList<Int> = mutableListOf(),
-        val backdropPath: String? = "",
+        var backdropPath: String? = "",
         val overview: String? = "",
         val releaseDate: String = "") {
 
     fun toUIModel(): MovieUI =
-            MovieUI(voteCount, id, voteAverage, title, posterPath ?: "", genres, backdropPath
+            MovieUI(voteCount, id, voteAverage, title, posterPath, genres, backdropPath
                     ?: "", overview, releaseDate)
 
 }

@@ -3,11 +3,11 @@ package movies.manuelperera.com.topmovies.screen.moviedetail.section
 import android.os.Handler
 import android.support.v4.view.ViewCompat
 import android.support.v7.util.DiffUtil
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.jakewharton.rxbinding2.view.RxView
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.chrome_detail_movie.view.*
 import kotlinx.android.synthetic.main.item_network_error.view.*
 import manuelperera.com.base.screen.presenter.recyclerview.RecyclerViewAdapterItem
@@ -42,17 +42,6 @@ class MovieDetailRecyclerAdapter(private val movieDetailView: MovieDetailView) :
         movieDetailRecyclerAdapterPresenter.init(this)
     }
 
-    override fun onViewAttachedToWindow(holder: RecyclerViewViewHolder<MovieUI>?) {
-        if (holder?.itemView is MovieDetailChromeView) {
-            val view = holder.itemView as MovieDetailChromeView
-            if (!view.isMovieDetailLoaded) {
-                val position = (mRecyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
-                movieDetailRecyclerAdapterPresenter.getMovieDetail(view, movieDetailRecyclerAdapterPresenter.listData[position].id)
-            }
-        }
-        super.onViewAttachedToWindow(holder)
-    }
-
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
         super.onDetachedFromRecyclerView(recyclerView)
         movieDetailRecyclerAdapterPresenter.clearPaginationAndReloadAdapter(false)
@@ -61,7 +50,7 @@ class MovieDetailRecyclerAdapter(private val movieDetailView: MovieDetailView) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewViewHolder<MovieUI>? =
             when (viewType) {
-                RecyclerViewAdapterItem.Type.ITEM.ordinal -> ProductsExtendedViewHolder(MovieDetailChromeView(parent.context), movieDetailRecyclerAdapterPresenter, movieDetailView)
+                RecyclerViewAdapterItem.Type.ITEM.ordinal -> MovieDetailViewHolder(MovieDetailChromeView(parent.context), movieDetailRecyclerAdapterPresenter, movieDetailView)
                 RecyclerViewAdapterItem.Type.FULLSCREEN_LOADING.ordinal -> LoadingSectionViewHolder((parent.inflate(R.layout.item_loading)))
                 RecyclerViewAdapterItem.Type.LOADING.ordinal -> LoadingSectionViewHolder((parent.inflate(R.layout.item_loading)))
                 RecyclerViewAdapterItem.Type.FOOTER.ordinal -> FooterSectionViewHolder(parent.inflate(R.layout.item_footer))
@@ -96,38 +85,35 @@ class MovieDetailRecyclerAdapter(private val movieDetailView: MovieDetailView) :
         return diffResult
     }
 
-    private class ProductsExtendedViewHolder(val view: View, val presenter: MovieDetailRecyclerAdapterPresenter, val movieDetailView: MovieDetailView) : RecyclerViewViewHolder<MovieUI>(view) {
-        var isFirstTime = true
-
+    private class MovieDetailViewHolder(val view: View, val presenter: MovieDetailRecyclerAdapterPresenter, val movieDetailView: MovieDetailView) : RecyclerViewViewHolder<MovieUI>(view) {
         override fun configure(item: MovieUI?) {
-            item?.let { movie ->
-                val movieDetailChromeView: MovieDetailChromeView = (view as MovieDetailChromeView)
+            if (item != null) {
+                val movieDetailChromeView: MovieDetailChromeView = view as MovieDetailChromeView
 
-                RxView.clicks(movieDetailChromeView.backArrowImageView).subscribe {
-                    movieDetailView.onBackArrowClick()
-                }
-
-                if (!movie.posterPath.contains(presenter.baseUrl))
-                    movie.posterPath = presenter.baseUrl + movie.posterPath
-
-                if (adapterPosition == 0 && isFirstTime) {
-                    ViewCompat.setTransitionName(movieDetailChromeView.movieImageView, movie.id.toString())
+                if (adapterPosition == 0) {
+                    ViewCompat.setTransitionName(movieDetailChromeView.movieImageView, item.id.toString())
                     Handler().post {
-                        movieDetailChromeView.setMovieChromeWithMovieUI(movie, delegate = { movieDetailView.finishEnterTransition() })
+                        movieDetailChromeView.setMovieChromeWithMovieUI(item, delegate = { movieDetailView.finishEnterTransition() })
                     }
-                    isFirstTime = false
                 } else {
-                    movieDetailChromeView.setMovieChromeWithMovieUI(movie)
+                    ViewCompat.setTransitionName(movieDetailChromeView.movieImageView, "NO_TRANSITION")
+                    movieDetailChromeView.setMovieChromeWithMovieUI(item)
                 }
 
-                presenter.bindItemClick(itemView, presenter.listData[adapterPosition])
-
+                presenter.getMovieDetail(movieDetailChromeView, item.id)
+                movieDetailChromeView.scrollToTop()
             }
         }
     }
 
     override fun onLoadMovieDetail(chromeView: MovieDetailChromeView, movieDetailUI: MovieDetailUI) {
-        chromeView.setMovieChromeWithMovieDetailUI(movieDetailUI)
+        chromeView.setMovieChromeWithMovieDetailUI(movieDetailUI).doOnComplete {
+            chromeView.homepageTextView?.let { textView ->
+                RxView.clicks(textView).subscribe {
+                    movieDetailView.openWeb(textView.text.toString())
+                }
+            }
+        }.subscribeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread()).subscribe()
     }
 
     override fun onLoadMovieDetailError(chromeView: MovieDetailChromeView, movieId: Int, errorMessage: String) {

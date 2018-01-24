@@ -16,11 +16,11 @@ import movies.manuelperera.com.topmovies.extensions.applyMargins
 import movies.manuelperera.com.topmovies.extensions.inflate
 import movies.manuelperera.com.topmovies.screen.toprated.TopRatedMoviesView
 import movies.manuelperera.com.topmovies.screen.toprated.section.injection.DaggerTopRatedMoviesRecyclerAdapterComponent
-import movies.manuelperera.com.topmovies.view.widget.MovieChromeView
 import movies.manuelperera.com.topmovies.view.viewholder.ErrorSectionViewHolder
 import movies.manuelperera.com.topmovies.view.viewholder.FooterSectionViewHolder
 import movies.manuelperera.com.topmovies.view.viewholder.LoadingSectionViewHolder
 import movies.manuelperera.com.topmovies.view.viewholder.RecyclerViewViewHolder
+import movies.manuelperera.com.topmovies.view.widget.MovieChromeView
 import javax.inject.Inject
 
 class TopRatedMoviesRecyclerAdapter(private val topRatedMoviesView: TopRatedMoviesView) : RecyclerView.Adapter<RecyclerViewViewHolder<MovieUI>>(), TopRatedMoviesRecyclerAdapterView {
@@ -91,8 +91,6 @@ class TopRatedMoviesRecyclerAdapter(private val topRatedMoviesView: TopRatedMovi
         override fun configure(item: MovieUI?) {
             item?.let { movie ->
                 val movieChromeView: MovieChromeView = (view as MovieChromeView)
-                if (!movie.posterPath.contains(presenter.baseUrl))
-                    movie.posterPath = presenter.baseUrl + movie.posterPath
                 movieChromeView.setMovieChrome(movie)
                 applyMargins(movieChromeView, 3.5f, 3.5f, 2.5f, 2.5f)
                 presenter.bindItemClick(itemView, presenter.listData[adapterPosition])

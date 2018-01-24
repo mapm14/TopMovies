@@ -17,8 +17,7 @@ class TopRatedMoviesRecyclerAdapterModule {
     fun topRatedMoviesRecyclerPresenter(getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
                                         setMovieSelectedUseCase: SetMovieSelectedUseCase,
                                         setTopRatedMoviesPaginationUseCase: SetTopRatedMoviesPaginationUseCase,
-                                        getConfigUseCase: GetConfigUseCase,
                                         context: Context): TopRatedMoviesRecyclerAdapterPresenter =
-            TopRatedMoviesRecyclerAdapterPresenter(getTopRatedMoviesUseCase, setMovieSelectedUseCase, setTopRatedMoviesPaginationUseCase, getConfigUseCase, context)
+            TopRatedMoviesRecyclerAdapterPresenter(getTopRatedMoviesUseCase, setMovieSelectedUseCase, setTopRatedMoviesPaginationUseCase, context)
 
 }

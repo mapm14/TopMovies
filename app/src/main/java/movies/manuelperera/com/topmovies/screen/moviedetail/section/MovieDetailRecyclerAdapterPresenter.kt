@@ -8,6 +8,7 @@ import manuelperera.com.base.client.transaction.Transaction
 import manuelperera.com.base.screen.presenter.recyclerview.InfiniteRecyclerViewAdapterPresenter
 import manuelperera.com.base.screen.presenter.recyclerview.RecyclerViewAdapterItem
 import movies.manuelperera.com.topmovies.R
+import movies.manuelperera.com.topmovies.domain.objects.ui.MovieDetailUI
 import movies.manuelperera.com.topmovies.domain.objects.ui.MovieUI
 import movies.manuelperera.com.topmovies.extensions.getErrorMessage
 import movies.manuelperera.com.topmovies.usecase.movie.GetConfigUseCase
@@ -18,22 +19,17 @@ import movies.manuelperera.com.topmovies.view.widget.MovieDetailChromeView
 
 class MovieDetailRecyclerAdapterPresenter(private val getSimilarMoviesUseCase: GetSimilarMoviesUseCase,
                                           private val setSimilarMoviesPaginationUseCase: SetSimilarMoviesPaginationUseCase,
-                                          private val getConfigUseCase: GetConfigUseCase,
                                           private val getMovieDetailUseCase: GetMovieDetailUseCase,
                                           context: Context) : InfiniteRecyclerViewAdapterPresenter<MovieDetailRecyclerAdapterView, MovieUI>() {
 
     var errorMessage: String = context.getString(R.string.ups_error_message)
-    var baseUrl = ""
-
-    init {
-        getImageBaseUrl()
-    }
+    private val movieDetailMutableList: MutableList<MovieDetailUI> = mutableListOf()
 
     override fun getLoadObservable(): Observable<Transaction<MutableList<MovieUI>>> =
             getSimilarMoviesUseCase.bind().map { transaction ->
-                if (transaction.isSuccess() && transaction.data != null)
+                if (transaction.isSuccess() && transaction.data != null) {
                     Transaction(transaction.data?.map { it.toUIModel() }?.toMutableList(), transaction.status)
-                else {
+                } else {
                     errorMessage = getErrorMessage(transaction.errorBody, errorMessage)
                     Transaction(status = transaction.status, errorBody = transaction.errorBody)
                 }
@@ -55,27 +51,30 @@ class MovieDetailRecyclerAdapterPresenter(private val getSimilarMoviesUseCase: G
 
     override fun getFullscreenNetworkErrorList(): MutableList<MovieUI> = mutableListOf(MovieUI(rType = RecyclerViewAdapterItem.Type.FULLSCREEN_ERROR))
 
-    fun clearPaginationAndReloadAdapter(reloadAdapter: Boolean) =
-            addSubscription(setSimilarMoviesPaginationUseCase.bind(SetSimilarMoviesPaginationUseCase.Params(1)).subscribe {
-                if (reloadAdapter)
-                    bindReloadDataObservable(Observable.just(true))
-            })
+    fun clearPaginationAndReloadAdapter(reloadAdapter: Boolean) {
+        addSubscription(setSimilarMoviesPaginationUseCase.bind(SetSimilarMoviesPaginationUseCase.Params(1)).subscribe {
+            if (reloadAdapter)
+                bindReloadDataObservable(Observable.just(true))
+        })
+    }
 
-    private fun getImageBaseUrl() =
-            addSubscription(getConfigUseCase.bind().subscribe { transaction ->
-                transaction.data?.let {
-                    baseUrl = it.images.getFullPosterSizeUrl()
+    fun getMovieDetail(chromeView: MovieDetailChromeView, movieId: Int) {
+        movieDetailMutableList
+                .filter { it.id == movieId }
+                .forEach {
+                    view?.onLoadMovieDetail(chromeView, it)
+                    return
                 }
-            })
 
-    fun getMovieDetail(chromeView: MovieDetailChromeView, movieId: Int) =
-            addSubscription(getMovieDetailUseCase.bind(GetMovieDetailUseCase.Params(movieId)).subscribe { transaction ->
-                if (transaction.isSuccess())
-                    transaction.data?.let { movieDetail ->
-                        view?.onLoadMovieDetail(chromeView, movieDetail)
-                    }
-                else
-                    view?.onLoadMovieDetailError(chromeView, movieId, getErrorMessage(transaction.errorBody, errorMessage))
-            })
+        addSubscription(getMovieDetailUseCase.bind(GetMovieDetailUseCase.Params(movieId)).subscribe { transaction ->
+            if (transaction.isSuccess())
+                transaction.data?.let { movieDetail ->
+                    movieDetailMutableList.add(movieDetail)
+                    view?.onLoadMovieDetail(chromeView, movieDetail)
+                }
+            else
+                view?.onLoadMovieDetailError(chromeView, movieId, getErrorMessage(transaction.errorBody, errorMessage))
+        })
+    }
 
 }

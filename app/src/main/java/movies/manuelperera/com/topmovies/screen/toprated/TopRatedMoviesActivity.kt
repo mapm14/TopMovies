@@ -1,9 +1,6 @@
 package movies.manuelperera.com.topmovies.screen.toprated
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.view.ViewCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
@@ -14,8 +11,8 @@ import kotlinx.android.synthetic.main.item_network_error.view.*
 import manuelperera.com.base.screen.presenter.recyclerview.RecyclerViewAdapterItem
 import movies.manuelperera.com.topmovies.R
 import movies.manuelperera.com.topmovies.TopMoviesApp
+import movies.manuelperera.com.topmovies.extensions.routeToMovieDetailActivity
 import movies.manuelperera.com.topmovies.extensions.setThemeColors
-import movies.manuelperera.com.topmovies.screen.moviedetail.MovieDetailActivity
 import movies.manuelperera.com.topmovies.screen.toprated.injection.DaggerTopRatedMoviesComponent
 import movies.manuelperera.com.topmovies.screen.toprated.section.TopRatedMoviesRecyclerAdapter
 import javax.inject.Inject
@@ -101,12 +98,7 @@ class TopRatedMoviesActivity : AppCompatActivity(), TopRatedMoviesView {
     }
 
     override fun routeToMovieDetail(sharedImageView: ImageView?) {
-        val intent = Intent(this, MovieDetailActivity::class.java)
-
-        if (sharedImageView != null) {
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, sharedImageView, ViewCompat.getTransitionName(sharedImageView))
-            startActivity(intent, options.toBundle())
-        } else
-            startActivity(intent)
+        routeToMovieDetailActivity(sharedImageView)
     }
+
 }

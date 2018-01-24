@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textColor="@color/colorAccentDark"
+        android:textColor="@color/colorAccent"
         android:textSize="16sp"
         app:fontName="Bold_Italic"
         tools:text="Título" />
@@ -26,7 +26,7 @@
         android:layout_marginStart="20dp"
         android:layout_toEndOf="@+id/itemKeyTextView"
         android:gravity="end"
-        android:textColor="@color/lightGrayTextColor"
+        android:textColor="@color/grayTextColor"
         android:textSize="16sp"
         app:fontName="Light"
         tools:text="Valor" />

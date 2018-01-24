@@ -11,7 +11,6 @@ import manuelperera.com.base.screen.presenter.recyclerview.RecyclerViewAdapterIt
 import movies.manuelperera.com.topmovies.R
 import movies.manuelperera.com.topmovies.domain.objects.ui.MovieUI
 import movies.manuelperera.com.topmovies.extensions.getErrorMessage
-import movies.manuelperera.com.topmovies.usecase.movie.GetConfigUseCase
 import movies.manuelperera.com.topmovies.usecase.movie.GetTopRatedMoviesUseCase
 import movies.manuelperera.com.topmovies.usecase.movie.SetMovieSelectedUseCase
 import movies.manuelperera.com.topmovies.usecase.movie.SetTopRatedMoviesPaginationUseCase
@@ -20,15 +19,9 @@ import movies.manuelperera.com.topmovies.view.widget.MovieChromeView
 class TopRatedMoviesRecyclerAdapterPresenter(private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
                                              private val setMovieSelectedUseCase: SetMovieSelectedUseCase,
                                              private val setTopRatedMoviesPaginationUseCase: SetTopRatedMoviesPaginationUseCase,
-                                             private val getConfigUseCase: GetConfigUseCase,
                                              context: Context) : InfiniteRecyclerViewAdapterPresenter<TopRatedMoviesRecyclerAdapterView, MovieUI>() {
 
     var errorMessage: String = context.getString(R.string.ups_error_message)
-    var baseUrl = ""
-
-    init {
-        getImageBaseUrl()
-    }
 
     override fun getLoadObservable(): Observable<Transaction<MutableList<MovieUI>>> =
             getTopRatedMoviesUseCase.bind().map { transaction ->
@@ -66,13 +59,6 @@ class TopRatedMoviesRecyclerAdapterPresenter(private val getTopRatedMoviesUseCas
     fun clearPaginationAndReloadAdapter() =
             addSubscription(setTopRatedMoviesPaginationUseCase.bind(SetTopRatedMoviesPaginationUseCase.Params(1)).subscribe {
                 bindReloadDataObservable(Observable.just(true))
-            })
-
-    private fun getImageBaseUrl() =
-            addSubscription(getConfigUseCase.bind().subscribe { transaction ->
-                transaction.data?.let {
-                    baseUrl = it.images.getChromePosterSizeUrl()
-                }
             })
 
 }

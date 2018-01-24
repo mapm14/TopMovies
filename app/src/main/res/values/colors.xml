@@ -8,7 +8,6 @@
     <color name="backgroundMovieChrome">#232323</color>
     <color name="backgroundApp">#1a1a1a</color>
 
-    <color name="separator">#444444</color>
-    <color name="grayTextColor">#545454</color>
-    <color name="lightGrayTextColor">#666666</color>
+    <color name="separator">#555555</color>
+    <color name="grayTextColor">#808080</color>
 </resources>

@@ -16,9 +16,8 @@ class MovieDetailRecyclerAdapterModule {
     @MovieDetailRecyclerAdapterScope
     fun movieDetailRecyclerAdapterPresenter(getSimilarMoviesUseCase: GetSimilarMoviesUseCase,
                                             setSimilarMoviesPaginationUseCase: SetSimilarMoviesPaginationUseCase,
-                                            getConfigUseCase: GetConfigUseCase,
                                             getMovieDetailUseCase: GetMovieDetailUseCase,
                                             context: Context): MovieDetailRecyclerAdapterPresenter =
-            MovieDetailRecyclerAdapterPresenter(getSimilarMoviesUseCase, setSimilarMoviesPaginationUseCase, getConfigUseCase, getMovieDetailUseCase, context)
+            MovieDetailRecyclerAdapterPresenter(getSimilarMoviesUseCase, setSimilarMoviesPaginationUseCase, getMovieDetailUseCase, context)
 
 }

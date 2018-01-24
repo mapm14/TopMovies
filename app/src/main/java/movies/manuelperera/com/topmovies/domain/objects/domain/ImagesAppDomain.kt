@@ -1,6 +1,6 @@
 package movies.manuelperera.com.topmovies.domain.objects.domain
 
-data class ImagesAppDomain(private val secureBaseUrl: String,
+data class ImagesAppDomain(val secureBaseUrl: String,
                            private val posterSizes: List<String>) {
 
     fun getChromePosterSizeUrl(): String =

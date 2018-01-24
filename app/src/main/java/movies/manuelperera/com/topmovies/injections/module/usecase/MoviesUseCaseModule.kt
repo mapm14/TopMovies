@@ -2,6 +2,7 @@ package movies.manuelperera.com.topmovies.injections.module.usecase
 
 import dagger.Module
 import dagger.Provides
+import movies.manuelperera.com.topmovies.domain.service.ConfigService
 import movies.manuelperera.com.topmovies.domain.service.MovieService
 import movies.manuelperera.com.topmovies.usecase.movie.*
 
@@ -9,8 +10,8 @@ import movies.manuelperera.com.topmovies.usecase.movie.*
 class MoviesUseCaseModule {
 
     @Provides
-    fun getTopRatedMoviesUseCase(movieService: MovieService): GetTopRatedMoviesUseCase =
-            GetTopRatedMoviesUseCase(movieService)
+    fun getTopRatedMoviesUseCase(movieService: MovieService, configService: ConfigService): GetTopRatedMoviesUseCase =
+            GetTopRatedMoviesUseCase(movieService, configService)
 
     @Provides
     fun setMovieIdUseCase(movieService: MovieService): SetMovieSelectedUseCase =
@@ -25,8 +26,8 @@ class MoviesUseCaseModule {
             GetMovieSelectedUseCase(movieService)
 
     @Provides
-    fun getSimilarMoviesUseCase(movieService: MovieService): GetSimilarMoviesUseCase =
-            GetSimilarMoviesUseCase(movieService)
+    fun getSimilarMoviesUseCase(movieService: MovieService, configService: ConfigService): GetSimilarMoviesUseCase =
+            GetSimilarMoviesUseCase(movieService, configService)
 
     @Provides
     fun setSimilarMoviesPaginationUseCase(movieService: MovieService): SetSimilarMoviesPaginationUseCase =
