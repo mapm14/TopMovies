@@ -1,6 +1,7 @@
 package movies.manuelperera.com.topmovies.view.widget
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.View
@@ -27,6 +28,7 @@ class MovieDetailChromeView @JvmOverloads constructor(context: Context, attrs: A
 
     private fun inflate() {
         inflate(context, R.layout.chrome_detail_movie, this)
+        cardBackgroundColor = ContextCompat.getColorStateList(context, R.color.backgroundMovieChrome)
         layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
         invalidate()
         requestLayout()

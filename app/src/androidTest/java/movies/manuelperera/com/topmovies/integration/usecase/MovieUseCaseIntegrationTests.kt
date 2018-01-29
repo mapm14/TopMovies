@@ -22,7 +22,7 @@ class MovieUseCaseIntegrationTests : UseCasesIntegrationTests() {
 
     @Test
     fun getTopRatedMoviesUseCase() {
-        val testObserver = getTopRatedMoviesUseCase.testObserver()
+        val testObserver = getTopRatedMoviesUseCase.movieService.getTopRatedMovies().test()
 
         testObserver
                 .assertComplete()
@@ -34,15 +34,15 @@ class MovieUseCaseIntegrationTests : UseCasesIntegrationTests() {
                             transaction.data!!.page == 1 &&
                             transaction.data!!.movies[0].id == 19404 &&
                             transaction.data!!.movies[0].title == "Dilwale Dulhania Le Jayenge" &&
-                            transaction.data!!.movies[1].id == 452522 &&
-                            transaction.data!!.movies[1].title == "Twin Peaks"
+                            transaction.data!!.movies[1].id == 20532 &&
+                            transaction.data!!.movies[1].title == "Sansho the Bailiff"
                 }
     }
 
     @Test
     fun getSimilarMoviesUseCase() {
         setMovieSelectedUseCase.bind(SetMovieSelectedUseCase.Params(MovieUI(id = 19404))).andThen {
-            val testObserver = getSimilarMoviesUseCase.testObserver()
+            val testObserver = getSimilarMoviesUseCase.movieService.getSimilarMovies().test()
 
             testObserver
                     .assertComplete()
@@ -62,7 +62,7 @@ class MovieUseCaseIntegrationTests : UseCasesIntegrationTests() {
 
     @Test
     fun getMovieDetailUseCase() {
-        val testObserver = getMovieDetailUseCase.testObserver()
+        val testObserver = getMovieDetailUseCase.movieService.getMovieDetail(812).test()
 
         testObserver
                 .assertComplete()

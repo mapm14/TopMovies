@@ -12,7 +12,7 @@ class ConfigUseCaseIntegrationTests : UseCasesIntegrationTests() {
 
     @Test
     fun getConfigUseCase() {
-        val testObserver = getConfigUseCase.testObserver()
+        val testObserver = getConfigUseCase.configService.getConfig().test()
 
         testObserver
                 .assertComplete()

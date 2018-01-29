@@ -28,6 +28,7 @@
                 android:layout_marginStart="45dp"
                 android:elevation="6dp"
                 android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_film"
                 tools:ignore="ContentDescription,UnusedAttribute" />
 
         </FrameLayout>

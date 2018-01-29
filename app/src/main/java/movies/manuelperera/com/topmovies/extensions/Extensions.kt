@@ -45,6 +45,7 @@ fun Activity.hideKeyboard() {
     }
 }
 
+// TODO: Fix bug when scrolling really fast and problem with placeholder in < API 21
 fun ImageView.loadUrl(url: String?, placeholder: Int = R.drawable.ic_film, delegate: () -> Unit = {}) {
     url?.let {
         val builder = Picasso.Builder(context)
@@ -52,7 +53,7 @@ fun ImageView.loadUrl(url: String?, placeholder: Int = R.drawable.ic_film, deleg
 
         builder.build()
                 .load(url)
-                .placeholder(placeholder)
+//                .placeholder(placeholder)
                 .into(this, object : Callback {
                     override fun onSuccess() {
                         delegate()
