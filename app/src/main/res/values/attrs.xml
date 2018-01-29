@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="fontName" format="enum">
+        <enum name="Regular" value="0" />
+        <enum name="Semi_Bold" value="1" />
+        <enum name="Bold" value="2" />
+        <enum name="Bold_Italic" value="3" />
+        <enum name="Italic" value="4" />
+        <enum name="Light" value="5" />
+        <enum name="Light_Italic" value="6" />
+        <enum name="Semi_Bold_Italic" value="7" />
+    </attr>
+
+    <declare-styleable name="TypefaceTextView">
+        <attr name="fontName" />
+        <attr name="letterSpacing" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="TypefaceButton">
+        <attr name="fontName" />
+    </declare-styleable>
+
+    <declare-styleable name="TypefaceEditText">
+        <attr name="fontName" />
+    </declare-styleable>
+
+</resources>

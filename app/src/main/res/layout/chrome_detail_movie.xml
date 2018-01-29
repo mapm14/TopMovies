@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movieChromeDetailScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundMovieChrome"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundMovieChrome"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/backgroundApp">
+
+            <ImageView
+                android:id="@+id/movieImageView"
+                android:layout_width="match_parent"
+                android:layout_height="375dp"
+                android:layout_marginEnd="45dp"
+                android:layout_marginStart="45dp"
+                android:elevation="6dp"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription,UnusedAttribute" />
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp">
+
+            <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+                android:id="@+id/movieChromeDetailTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/movieChromeDetailVoteAverageTextView"
+                android:paddingEnd="20dp"
+                android:paddingStart="16dp"
+                android:textColor="@android:color/white"
+                android:textSize="26sp"
+                app:fontName="Bold_Italic"
+                app:letterSpacing="-0.02"
+                tools:text="The Avengers:\nCivil War" />
+
+            <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+                android:id="@+id/movieChromeDetailVoteAverageTextView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rounded_button_gradient"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:fontName="Semi_Bold"
+                tools:ignore="SmallSp"
+                tools:text="9.2" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/separator" />
+
+        <LinearLayout
+            android:id="@+id/movieChromeDetailOverviewLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:text="@string/overview"
+                android:textAllCaps="true"
+                android:textColor="@color/grayTextColor"
+                android:textSize="26sp"
+                app:fontName="Light"
+                app:letterSpacing="0.5" />
+
+            <movies.manuelperera.com.topmovies.view.widget.TypefaceTextView
+                android:id="@+id/movieChromeDetailOverviewTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_horizontal"
+                android:paddingEnd="24dp"
+                android:paddingStart="24dp"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                app:fontName="Light"
+                tools:text="Lorem Ipsum" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/separator" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/movieChromeDetailValuesLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/movieChromeDetailLoadingView"
+            layout="@layout/item_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="90dp"
+            android:visibility="visible" />
+
+        <include
+            android:id="@+id/movieChromeDetailNetworkErrorView"
+            layout="@layout/item_network_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="90dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
